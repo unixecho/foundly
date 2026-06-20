@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* ── Color ── */
+  --ink:          #1c1d22;
+  --ink2:         #5b5d66;
+  --ink3:         #8e9099;
+  --paper:        #f5f4f2;
+  --surface:      #ffffff;
+  --surface2:     #faf9f7;
+  --line:         #ebe9e4;
+  --line2:        #e3e1db;
+
+  --accent:       #4b4f8c;
+  --accent-soft:  #edeef6;
+  --accent-soft2: #e1e2ef;
+  --accent-ink:   #3a3d6e;
+  --on-accent:    #ffffff;
+  --accent-shadow: rgba(75, 79, 140, 0.3);
+
+  --green:        #3a8a64;
+  --green-ink:    #2e6a4d;
+  --green-soft:   #e4f0e9;
+
+  --amber:        #c08a2e;
+  --amber-ink:    #8a5a16;
+  --amber-soft:   #f6ecd8;
+
+  --error:        #c0392b;
+  --error-soft:   #fdf2f2;
+  --error-soft2:  #f9e3e0;
+
+  /* ── Elevation ── */
+  --shadow-card:   0 1px 2px rgba(28, 29, 34, 0.03);
+  --shadow-raised: 0 8px 26px rgba(28, 29, 34, 0.07);
+  --shadow-accent: 0 6px 16px rgba(75, 79, 140, 0.3);
+  --shadow-modal:  0 24px 60px rgba(28, 29, 34, 0.3);
+  --shadow-device: 0 30px 70px rgba(28, 29, 34, 0.22);
+
+  /* ── Motion ── */
+  --motion-reveal: 180ms ease;
+  --motion-sheet:  230ms ease;
+  --motion-modal:  220ms ease;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* ── Animations ── */
+  @keyframes fdReveal {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: none; }
+  }
+  @keyframes fdScale {
+    from { opacity: 0; transform: scale(0.88); }
+    to   { opacity: 1; transform: none; }
+  }
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to   { transform: none; }
+  }
+  @keyframes scanLine {
+    0%, 100% { top: 24px; }
+    50%       { top: calc(100% - 24px); }
+  }
+
+  .animate-reveal { animation: fdReveal 0.3s ease both; }
+  .animate-scale  { animation: fdScale  0.3s ease both; }
+  .animate-slide-up { animation: slideUp 0.23s ease both; }
+
+  /* ── Focus ring ── */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ── Foundly primary button ── */
+  .btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 14px;
+    background: var(--accent);
+    color: var(--on-accent);
+    font: 600 15px 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer;
+    box-shadow: var(--shadow-accent);
+    transition: opacity 0.15s;
+  }
+  .btn-primary:disabled {
+    background: var(--line2);
+    color: var(--ink3);
+    box-shadow: none;
+    cursor: default;
+  }
+
+  /* ── Secondary / ghost button ── */
+  .btn-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 50px;
+    border: 1.5px solid var(--line2);
+    border-radius: 14px;
+    background: var(--surface);
+    color: var(--ink2);
+    font: 600 15px 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer;
+  }
+
+  /* ── Text input ── */
+  .input {
+    display: flex;
+    align-items: center;
+    height: 52px;
+    border: 1.5px solid var(--line2);
+    border-radius: 14px;
+    padding: 0 16px;
+    background: var(--surface);
+    font: 400 15px 'Plus Jakarta Sans', sans-serif;
+    color: var(--ink);
+    outline: none;
+    width: 100%;
+    transition: border-color 0.15s;
+  }
+  .input:focus {
+    border-color: var(--accent);
+  }
+  .input::placeholder {
+    color: var(--ink3);
+  }
+
+  /* ── Card ── */
+  .card {
+    background: var(--surface);
+    border-radius: 18px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--line);
+  }
+
+  /* ── Status chips ── */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font: 600 12px 'Plus Jakarta Sans', sans-serif;
+  }
+  .chip-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .chip-open        { background: var(--amber-soft); color: var(--amber-ink); }
+  .chip-open .chip-dot { background: var(--amber); }
+  .chip-in-progress { background: var(--accent-soft); color: var(--accent-ink); }
+  .chip-in-progress .chip-dot { background: var(--accent); }
+  .chip-resolved    { background: var(--green-soft); color: var(--green-ink); }
+  .chip-resolved .chip-dot { background: var(--green); }
+  .chip-archived    { background: #eeedea; color: var(--ink3); }
+  .chip-archived .chip-dot { background: var(--ink3); }
+  .chip-protected   { background: var(--green-soft); color: var(--green-ink); }
+  .chip-protected .chip-dot { background: var(--green); }
+
+  /* ── Label (uppercase caps) ── */
+  .label {
+    font: 600 12px 'Plus Jakarta Sans', sans-serif;
+    color: var(--ink3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── Mono tag ── */
+  .mono {
+    font: 500 12px 'JetBrains Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Info panel (accent tint) ── */
+  .info-panel {
+    display: flex;
+    gap: 10px;
+    padding: 14px;
+    border-radius: 14px;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-soft2);
+  }
+
+  /* ── Error inline ── */
+  .error-inline {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 13px;
+    border-radius: 12px;
+    background: var(--error-soft);
+    border: 1px solid rgba(192, 57, 43, 0.12);
+    font: 500 13px 'Plus Jakarta Sans', sans-serif;
+    color: var(--error);
+  }
+
+  /* ── Scrollbar hide ── */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
