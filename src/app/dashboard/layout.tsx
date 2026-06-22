@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
+import LogoutButton from '@/components/LogoutButton'
 
 export default async function DashboardLayout({
   children,
@@ -12,15 +13,42 @@ export default async function DashboardLayout({
 
   if (!user) redirect('/login')
 
+  const { count: openCases } = await supabase
+    .from('recovery_cases')
+    .select('*', { count: 'exact', head: true })
+    .eq('owner_id', user.id)
+    .in('status', ['open', 'in_progress'])
+
+  const badge = openCases && openCases > 0 ? openCases : null
+
   return (
     <div className="min-h-screen flex flex-col">
       <header className="border-b px-6 py-4 flex items-center justify-between">
-        <Link href="/dashboard" className="font-bold text-lg">Foundly</Link>
-        <nav className="flex items-center gap-6 text-sm">
-          <Link href="/dashboard/items" className="text-gray-600 hover:text-black">Items</Link>
-          <Link href="/dashboard/tags" className="text-gray-600 hover:text-black">Tags</Link>
-          <Link href="/dashboard/cases" className="text-gray-600 hover:text-black">Cases</Link>
-          <Link href="/dashboard/settings" className="text-gray-600 hover:text-black">Settings</Link>
+        <Link href="/dashboard" style={{ font: "700 17px 'Plus Jakarta Sans'", color: 'var(--ink)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 7 }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Foundly
+        </Link>
+        <nav style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          {[
+            { href: '/dashboard/items', label: 'Items' },
+            { href: '/dashboard/tags', label: 'Tags' },
+            { href: '/dashboard/cases', label: 'Cases', badge },
+            { href: '/dashboard/settings', label: 'Settings' },
+          ].map(({ href, label, badge }) => (
+            <Link
+              key={href}
+              href={href}
+              style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', gap: 5, padding: '7px 12px', borderRadius: 10, font: "500 13px 'Plus Jakarta Sans'", color: 'var(--ink2)', textDecoration: 'none' }}
+            >
+              {label}
+              {badge && (
+                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: 18, height: 18, padding: '0 5px', borderRadius: 999, background: '#c08a2e', color: '#fff', font: "700 10px 'Plus Jakarta Sans'" }}>
+                  {badge > 9 ? '9+' : badge}
+                </span>
+              )}
+            </Link>
+          ))}
+          <LogoutButton />
         </nav>
       </header>
       <main className="flex-1 p-6">{children}</main>

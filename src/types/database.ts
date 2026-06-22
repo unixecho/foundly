@@ -85,5 +85,5 @@ export interface RecoveryCaseWithTag extends RecoveryCase {
 
 export interface TagWithItem extends Tag {
   items: Item | null
-  users: Pick<User, 'display_name'> | null
+  users: Pick<User, 'first_name' | 'last_name'> | null
 }

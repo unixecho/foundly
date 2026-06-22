@@ -16,31 +16,51 @@ export default async function CasesPage() {
     `)
     .order('opened_at', { ascending: false })
 
-  const open = cases?.filter(c => c.status === 'open' || c.status === 'in_progress') ?? []
-  const closed = cases?.filter(c => c.status === 'resolved' || c.status === 'archived') ?? []
+  const active = cases?.filter(c => c.status === 'open' || c.status === 'in_progress') ?? []
+  const resolved = cases?.filter(c => c.status === 'resolved') ?? []
+  const archived = cases?.filter(c => c.status === 'archived') ?? []
+
+  const nothing = active.length === 0 && resolved.length === 0 && archived.length === 0
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Recovery Cases</h1>
+    <div className="max-w-owner mx-auto">
+      <h1 style={{ font: "800 26px/1.2 'Plus Jakarta Sans'", letterSpacing: '-.025em', margin: '0 0 24px' }}>
+        Recovery cases
+      </h1>
 
-      {open.length === 0 && closed.length === 0 && (
-        <p className="text-gray-500">No recovery cases yet. Cases are created when someone scans one of your tags.</p>
+      {nothing && (
+        <p style={{ font: "400 14px 'Plus Jakarta Sans'", color: 'var(--ink3)' }}>
+          No recovery cases yet. Cases are created when someone scans one of your tags.
+        </p>
       )}
 
-      {open.length > 0 && (
-        <section className="mb-8">
-          <h2 className="text-sm font-semibold uppercase text-gray-400 mb-3">Active</h2>
-          <div className="flex flex-col gap-3">
-            {open.map(c => <CaseRow key={c.id} c={c as RecoveryCaseWithTag} />)}
+      {active.length > 0 && (
+        <section style={{ marginBottom: 28 }}>
+          <h2 className="label" style={{ display: 'block', marginBottom: 12 }}>Active</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {active.map(c => <CaseRow key={c.id} c={c as RecoveryCaseWithTag} />)}
           </div>
         </section>
       )}
 
-      {closed.length > 0 && (
+      {resolved.length > 0 && (
+        <section style={{ marginBottom: 28 }}>
+          <h2 className="label" style={{ display: 'block', marginBottom: 12 }}>Resolved</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {resolved.map(c => <CaseRow key={c.id} c={c as RecoveryCaseWithTag} />)}
+          </div>
+        </section>
+      )}
+
+      {/* Archived — packed away: compact, muted, tucked at the bottom */}
+      {archived.length > 0 && (
         <section>
-          <h2 className="text-sm font-semibold uppercase text-gray-400 mb-3">Resolved</h2>
-          <div className="flex flex-col gap-3 opacity-60">
-            {closed.map(c => <CaseRow key={c.id} c={c as RecoveryCaseWithTag} />)}
+          <h2 className="label" style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 12 }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8"/><path d="M10 12h4"/></svg>
+            Archived
+          </h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            {archived.map(c => <ArchivedRow key={c.id} c={c as RecoveryCaseWithTag} />)}
           </div>
         </section>
       )}
@@ -48,29 +68,48 @@ export default async function CasesPage() {
   )
 }
 
+const CHIP: Record<string, string> = {
+  open: 'chip chip-open',
+  in_progress: 'chip chip-in-progress',
+  resolved: 'chip chip-resolved',
+  archived: 'chip chip-archived',
+}
+
 function CaseRow({ c }: { c: RecoveryCaseWithTag }) {
   const itemName = c.tags?.items?.name ?? 'Unknown item'
-  const chipClass: Record<string, string> = {
-    open: 'chip chip-open',
-    in_progress: 'chip chip-in-progress',
-    resolved: 'chip chip-resolved',
-    archived: 'chip chip-archived',
-  }
-
   return (
     <Link
       href={`/dashboard/cases/${c.id}`}
-      className="border rounded-lg p-4 flex items-center justify-between hover:shadow-sm transition"
+      style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '14px 15px', borderRadius: 16, background: 'var(--surface)', border: '1px solid var(--line)', textDecoration: 'none', boxShadow: '0 1px 2px rgba(28,29,34,.03)' }}
     >
-      <div>
-        <p className="font-medium">{itemName}</p>
-        <p className="text-sm text-gray-500">
-          Tag: {c.tags?.serial} · {new Date(c.opened_at).toLocaleDateString()}
+      <div style={{ minWidth: 0 }}>
+        <p style={{ font: "600 15px 'Plus Jakarta Sans'", color: 'var(--ink)', margin: '0 0 3px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{itemName}</p>
+        <p style={{ font: "400 12px 'JetBrains Mono'", color: 'var(--ink3)', margin: 0 }}>
+          {c.tags?.serial} · {new Date(c.opened_at).toLocaleDateString()}
         </p>
       </div>
-      <span className={chipClass[c.status] ?? 'chip'}>
+      <span className={CHIP[c.status] ?? 'chip'}>
         <span className="chip-dot" />
         {c.status.replace('_', ' ')}
+      </span>
+    </Link>
+  )
+}
+
+// Compact, muted row for archived cases — visually "tucked away".
+function ArchivedRow({ c }: { c: RecoveryCaseWithTag }) {
+  const itemName = c.tags?.items?.name ?? 'Unknown item'
+  return (
+    <Link
+      href={`/dashboard/cases/${c.id}`}
+      style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '10px 14px', borderRadius: 12, background: 'var(--surface2)', border: '1px solid var(--line)', textDecoration: 'none', opacity: 0.72 }}
+    >
+      <div style={{ minWidth: 0, display: 'flex', alignItems: 'baseline', gap: 8 }}>
+        <span style={{ font: "500 14px 'Plus Jakarta Sans'", color: 'var(--ink2)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{itemName}</span>
+        <span style={{ font: "400 11px 'JetBrains Mono'", color: 'var(--ink3)', flexShrink: 0 }}>{c.tags?.serial}</span>
+      </div>
+      <span style={{ font: "500 11px 'Plus Jakarta Sans'", color: 'var(--ink3)', flexShrink: 0 }}>
+        {new Date(c.opened_at).toLocaleDateString()}
       </span>
     </Link>
   )

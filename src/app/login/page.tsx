@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 type Screen = 'email' | 'otp' | 'verified' | 'profile' | 'recovery' | 'done'
 
 const RESEND_COOLDOWN = 30
+const OTP_LENGTH = 8
 
 export default function LoginPage() {
   const [screen, setScreen] = useState<Screen>('email')
@@ -18,7 +19,12 @@ export default function LoginPage() {
   const [lastName, setLastName] = useState('')
   const [recoveryEmail, setRecoveryEmail] = useState('')
   const [loading, setLoading] = useState(false)
+  const [sendError, setSendError] = useState<string | null>(null)
   const otpInputRef = useRef<HTMLInputElement>(null)
+
+  function isValidEmail(val: string) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val)
+  }
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const router = useRouter()
   const supabase = createClient()
@@ -49,14 +55,17 @@ export default function LoginPage() {
   }, [screen])
 
   async function sendCode() {
-    if (!email.includes('@')) return
+    if (!isValidEmail(email)) return
     setLoading(true)
+    setSendError(null)
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: { shouldCreateUser: true },
     })
     setLoading(false)
-    if (!error) {
+    if (error) {
+      setSendError('Something went wrong sending the code. Please try again.')
+    } else {
       setOtp('')
       setOtpError(null)
       setResendSecs(RESEND_COOLDOWN)
@@ -65,16 +74,16 @@ export default function LoginPage() {
   }
 
   function handleOtpChange(val: string) {
-    const digits = val.replace(/\D/g, '').slice(0, 6)
+    const digits = val.replace(/\D/g, '').slice(0, OTP_LENGTH)
     setOtp(digits)
     setOtpError(null)
-    if (digits.length === 6) {
+    if (digits.length === OTP_LENGTH) {
       setTimeout(() => verifyOtp(digits), 180)
     }
   }
 
   async function verifyOtp(code = otp) {
-    if (code.length < 6) return
+    if (code.length < OTP_LENGTH) return
     setLoading(true)
     const { error } = await supabase.auth.verifyOtp({
       email,
@@ -102,12 +111,11 @@ export default function LoginPage() {
 
   async function saveRecovery(skip = false) {
     if (!skip && recoveryEmail.includes('@')) {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (user) {
-        await supabase.from('users').update({
-          recovery_email: recoveryEmail.trim(),
-        }).eq('id', user.id)
-      }
+      await fetch('/api/recovery/send-verification', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: recoveryEmail.trim() }),
+      })
     }
     setScreen('done')
   }
@@ -117,7 +125,7 @@ export default function LoginPage() {
     : firstName.trim() || null
 
   // ── Digit boxes for OTP ──
-  const otpDigits = Array.from({ length: 6 }, (_, i) => {
+  const otpDigits = Array.from({ length: OTP_LENGTH }, (_, i) => {
     const ch = otp[i] ?? ''
     const active = otp.length === i && !otpError
     const isErr = !!otpError && otpError !== 'expired'
@@ -165,11 +173,17 @@ export default function LoginPage() {
             </div>
             <button
               onClick={sendCode}
-              disabled={!email.includes('@') || loading}
+              disabled={!isValidEmail(email) || loading}
               className="btn-primary"
             >
               {loading ? 'Sending…' : 'Send me a code'}
             </button>
+            {sendError && (
+              <div className="error-inline mt-3 animate-reveal">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--error)" strokeWidth="1.6" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
+                <span>{sendError}</span>
+              </div>
+            )}
             <p style={{ font: "400 13px/1.5 'Plus Jakarta Sans'", color: 'var(--ink3)', textAlign: 'center', margin: '22px 0 0' }}>
               New here? Your account is created automatically — same simple step either way.
             </p>
@@ -199,7 +213,7 @@ export default function LoginPage() {
               </div>
               <h2 style={{ font: "800 23px/1.2 'Plus Jakarta Sans'", letterSpacing: '-.02em', margin: '0 0 8px' }}>Check your email</h2>
               <p style={{ font: "400 14px/1.5 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: 0 }}>
-                We sent a 6-digit code to<br />
+                We sent an 8-digit code to<br />
                 <b style={{ color: 'var(--ink)', fontWeight: 600 }}>{email}</b>
               </p>
             </div>
@@ -228,7 +242,7 @@ export default function LoginPage() {
                 ref={otpInputRef}
                 type="text"
                 inputMode="numeric"
-                maxLength={6}
+                maxLength={OTP_LENGTH}
                 value={otp}
                 onChange={e => handleOtpChange(e.target.value)}
                 style={{ position: 'absolute', inset: 0, opacity: 0.01, cursor: 'text', fontSize: 16, background: 'transparent', border: 'none', outline: 'none', width: '100%', zIndex: 10 }}
@@ -248,7 +262,7 @@ export default function LoginPage() {
 
             <button
               onClick={() => verifyOtp()}
-              disabled={otp.length < 6 || loading}
+              disabled={otp.length < OTP_LENGTH || loading}
               className="btn-primary"
             >
               {loading ? 'Verifying…' : 'Verify code'}
