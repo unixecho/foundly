@@ -247,9 +247,9 @@ export default function ActivatePage() {
             </p>
             <div className="flex flex-col gap-2 mb-auto">
               {[
-                'Make sure the whole QR is in frame',
-                'Wipe the tag if it's scratched or dusty',
-                <span key="3">Codes start with <span className="mono" style={{ fontWeight: 600 }}>FN-</span></span>,
+                <>Make sure the whole QR is in frame</>,
+                <>Wipe the tag if it's scratched or dusty</>,
+                <>Codes start with <span className="mono" style={{ fontWeight: 600 }}>FN-</span></>,
               ].map((hint, i) => (
                 <div key={i} className="flex items-center gap-2">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2" style={{ flexShrink: 0 }}><path d="M20 6 9 17l-5-5"/></svg>
