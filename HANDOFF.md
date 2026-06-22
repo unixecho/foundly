@@ -91,6 +91,40 @@ All defined in `STYLES` constant at the top of `FinderForm.tsx` (injected once p
 
 ---
 
+## Session 4 — agreed scope (planned)
+
+The committed batch for this session. (Raw wishlist lives in `TODO.md`.)
+
+**Active batch**
+1. **Phone validation** on the finder contact-share — valid Israeli numbering plan only
+   (country code **+972**: mobile `05X`, landlines `02/03/04/08/09`, `07X`). Normalize input
+   shapes (`0…`, `+972…`, `972…`, spaces/dashes) → store canonical **E.164** (`+972…`).
+   Inline per-field error like the email check. File: `src/app/found/[serial]/FinderForm.tsx`
+   (`validateContact()`). Numbers outside the +972 plan don't validate (Israel-only for now).
+2. **Hebrew font + RTL pass (done together)** — ship a proper Hebrew webfont
+   (Heebo / Assistant / Rubik / Noto Sans Hebrew); Hebrew text uses it, Latin keeps
+   Plus Jakarta Sans. Same pass: mirror layouts for RTL (was all LTR).
+3. **Profile editing — name only (partial)** — let the owner edit their first/last name in
+   settings. Email change stays deferred (needs its own verification flow).
+4. **Polish `/dashboard/items`** — basic CRUD exists; bring it up to the design system.
+5. **Thorough demo QA** — end-to-end pass of the full finder→owner flow (scan → options →
+   chat request/accept → location → contact → status changes → archive), verify SSE + emails.
+
+**Build order:** 1 (phone) → 3 (name edit) → 2 (font + RTL) → 4 (items polish) → 5 (demo QA).
+
+**Deferred (decided — not now)**
+- **Admin tag provisioning tool** — pulled from this batch. Revisit when provisioning real
+  physical tags.
+- **Account deletion.** Single user currently; a correct implementation needs a full cascade
+  (case_events → cases → items → tags → auth user) plus a confirm flow. Revisit right before
+  onboarding real users. Tracked in "Pending" below.
+
+**Dependency note**
+- The Owner live-update + top-of-screen toast (TODO #2 / handoff item) depends on the SSE
+  Vercel-timeout decision (Supabase Realtime vs. plan upgrade). Not in this batch.
+
+---
+
 ## Current file map (things touched in session 2)
 
 ```
@@ -126,7 +160,7 @@ src/
 | `/dashboard/items` | Basic CRUD exists, needs polish. |
 | `/dashboard/tags` | Tag list, deactivate, reassign — not built. |
 | **Settings** | Notification toggle + profile edit pending. Recovery email section is done. |
-| **Account deletion** | UI stub ("coming soon"). No backend. |
+| **Account deletion** | UI stub ("coming soon"). No backend. **Deferred (session 4 decision)** — not worth it as single user; needs full cascade + confirm flow. Revisit before real users. |
 | **Admin tag provisioning** | No tool to insert serial + activation_token for physical tags yet. |
 | **Supabase webhook** | `/api/cases/notify` exists but webhook not configured. Direct Resend call in submit route covers it for now. |
 

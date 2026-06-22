@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import RecoveryEmailSection from './RecoveryEmailSection'
+import ProfileSection from './ProfileSection'
 
 export default async function SettingsPage() {
   const supabase = await createClient()
@@ -18,22 +19,11 @@ export default async function SettingsPage() {
       <h1 style={{ font: "800 27px/1.18 'Plus Jakarta Sans'", letterSpacing: '-.025em', margin: '0 0 24px' }}>Settings</h1>
 
       {/* Profile */}
-      <section className="card p-5 mb-4">
-        <h2 style={{ font: "700 16px 'Plus Jakarta Sans'", margin: '0 0 16px' }}>Profile</h2>
-        <dl style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 16px', fontSize: 14 }}>
-          <dt style={{ color: 'var(--ink3)' }}>Name</dt>
-          <dd style={{ margin: 0 }}>{profile?.first_name} {profile?.last_name}</dd>
-          <dt style={{ color: 'var(--ink3)' }}>Email</dt>
-          <dd style={{ margin: 0 }}>{profile?.email}</dd>
-          <dt style={{ color: 'var(--ink3)' }}>Finders see</dt>
-          <dd style={{ margin: 0, fontWeight: 600 }}>
-            {profile?.first_name} {profile?.last_name?.[0]?.toUpperCase()}.
-          </dd>
-        </dl>
-        <p style={{ font: "400 12px 'Plus Jakarta Sans'", color: 'var(--ink3)', margin: '14px 0 0' }}>
-          Contact support to update your name.
-        </p>
-      </section>
+      <ProfileSection
+        firstName={profile?.first_name ?? ''}
+        lastName={profile?.last_name ?? ''}
+        email={profile?.email ?? ''}
+      />
 
       {/* Recovery email */}
       <RecoveryEmailSection

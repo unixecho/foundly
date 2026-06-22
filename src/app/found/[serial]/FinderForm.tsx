@@ -201,10 +201,10 @@ export default function FinderForm({
   }
 
   async function sendContact() {
-    const errs = validateContact(name, email, phone)
+    const { errs, phoneE164 } = validateContact(name, email, phone)
     setContactErrors(errs)
     if (Object.keys(errs).length > 0) return
-    const id = await submitCase({ finderName: name.trim(), finderEmail: email.trim(), finderPhone: phone.trim() })
+    const id = await submitCase({ finderName: name.trim(), finderEmail: email.trim(), finderPhone: phoneE164 })
     if (id) { setContactShared(true); setScreen('hub') }
   }
 
@@ -495,7 +495,7 @@ export default function FinderForm({
           </div>
           <div>
             <input
-              type="tel" inputMode="tel" autoComplete="tel" placeholder="Your phone number" value={phone}
+              type="tel" inputMode="tel" autoComplete="tel" placeholder="Phone, e.g. 050-123-4567" value={phone}
               onChange={e => { setPhone(e.target.value); if (contactErrors.phone) setContactErrors(p => ({ ...p, phone: undefined })) }}
               className="input"
               style={contactErrors.phone ? { borderColor: 'var(--error)' } : undefined}
@@ -682,16 +682,48 @@ function FieldError({ children }: { children: React.ReactNode }) {
 // Fields are optional, but anything the finder DOES enter must be valid, and at
 // least one contact method is required.
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
-// Phone: digits with common separators (+, spaces, -, parentheses, dots) only.
+// Phone: characters allowed in raw input — digits + common separators, optional leading +.
 const PHONE_ALLOWED_RE = /^[+\d][\d\s().-]*$/
 
+// Israeli numbering plan (country code +972), validated on the national significant
+// number (NSN, i.e. without the +972 / leading-0 trunk prefix):
+//   mobile  05X  → NSN starts 5, 9 digits   (^5\d{8}$)
+//   VoIP    07X  → NSN starts 7, 9 digits   (^7\d{8}$)
+//   landline 02/03/04/08/09 → NSN starts 2/3/4/8/9, 8 digits (^[23489]\d{7}$)
+const IL_NSN_RE = /^(?:5\d{8}|7\d{8}|[23489]\d{7})$/
+
+// Normalize a raw phone string to E.164 (+972…) if it's a valid Israeli number.
+// Accepts 0XX…, +972…, 972…, or a bare NSN, with spaces/dashes/dots/parens.
+// Returns { e164 } on success or { error } with a user-facing message.
+function normalizeILPhone(raw: string): { e164: string } | { error: string } {
+  if (/[a-zA-Z]/.test(raw) || !PHONE_ALLOWED_RE.test(raw.trim())) {
+    return { error: 'Phone numbers can only contain digits.' }
+  }
+  let digits = raw.replace(/\D/g, '')
+  if (!digits) return { error: 'Enter a valid Israeli phone number.' }
+
+  // Strip the +972/972 country code or the national trunk 0 to get the NSN.
+  if (digits.startsWith('972')) {
+    digits = digits.slice(3).replace(/^0/, '')
+  } else if (digits.startsWith('0')) {
+    digits = digits.slice(1)
+  }
+
+  if (!IL_NSN_RE.test(digits)) {
+    return { error: 'Enter a valid Israeli number, e.g. 050-123-4567.' }
+  }
+  return { e164: '+972' + digits }
+}
+
+// Validates the contact fields and returns the normalized E.164 phone (empty if none/invalid).
 function validateContact(name: string, email: string, phone: string) {
   const errs: { name?: string; email?: string; phone?: string } = {}
   const n = name.trim(), e = email.trim(), p = phone.trim()
+  let phoneE164 = ''
 
   if (!n && !e && !p) {
     errs.email = 'Add at least one way for the owner to reach you.'
-    return errs
+    return { errs, phoneE164 }
   }
 
   if (n && n.length < 2) errs.name = 'Please enter your full name.'
@@ -701,15 +733,12 @@ function validateContact(name: string, email: string, phone: string) {
   }
 
   if (p) {
-    const digits = p.replace(/\D/g, '')
-    if (!PHONE_ALLOWED_RE.test(p) || /[a-zA-Z]/.test(p)) {
-      errs.phone = 'Phone numbers can only contain digits.'
-    } else if (digits.length < 7 || digits.length > 15) {
-      errs.phone = 'Enter a valid phone number.'
-    }
+    const res = normalizeILPhone(p)
+    if ('error' in res) errs.phone = res.error
+    else phoneE164 = res.e164
   }
 
-  return errs
+  return { errs, phoneE164 }
 }
 
 // Animated bounce dots used in location loading + waiting indicator
