@@ -211,7 +211,7 @@ export default function FinderForm({
   const backBtn = (to: Screen, label = 'Back') => (
     <button
       onClick={() => { setError(null); setScreen(to) }}
-      style={{ display: 'flex', alignItems: 'center', gap: 6, border: 'none', background: 'transparent', font: "500 13px 'Plus Jakarta Sans'", color: 'var(--ink3)', cursor: 'pointer', padding: '0 0 16px', marginLeft: -4 }}
+      style={{ display: 'flex', alignItems: 'center', gap: 6, border: 'none', background: 'transparent', font: "500 13px var(--ff)", color: 'var(--ink3)', cursor: 'pointer', padding: '0 0 16px', marginLeft: -4 }}
     >
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="m15 18-6-6 6-6"/></svg>
       {label}
@@ -225,28 +225,28 @@ export default function FinderForm({
       <div style={{ width: 68, height: 68, borderRadius: 22, background: 'var(--accent-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.5"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
       </div>
-      <h1 style={{ font: "800 24px/1.2 'Plus Jakarta Sans'", letterSpacing: '-.02em', margin: '0 0 8px' }}>
+      <h1 style={{ font: "800 24px/1.2 var(--ff)", letterSpacing: '-.02em', margin: '0 0 8px' }}>
         You found {itemName}
       </h1>
-      <p style={{ font: "400 15px/1.55 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: '0 0 6px' }}>
+      <p style={{ font: "400 15px/1.55 var(--ff)", color: 'var(--ink2)', margin: '0 0 6px' }}>
         This belongs to <strong style={{ color: 'var(--ink)' }}>{ownerName}</strong>.
       </p>
-      <p style={{ font: "400 14px/1.5 'Plus Jakarta Sans'", color: 'var(--ink3)', margin: '0 0 28px' }}>
+      <p style={{ font: "400 14px/1.5 var(--ff)", color: 'var(--ink3)', margin: '0 0 28px' }}>
         No account needed. The owner's contact info is always kept private.
       </p>
-      <p style={{ font: "700 15px 'Plus Jakarta Sans'", color: 'var(--ink)', margin: '0 0 14px' }}>
+      <p style={{ font: "700 15px var(--ff)", color: 'var(--ink)', margin: '0 0 14px' }}>
         Do you want to help return it?
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         <button
           onClick={() => setScreen('hub')}
-          style={{ width: '100%', height: 52, border: 'none', borderRadius: 14, background: 'var(--accent)', color: 'var(--on-accent)', font: "700 15px 'Plus Jakarta Sans'", cursor: 'pointer', boxShadow: 'var(--shadow-accent)', transition: 'opacity .15s' }}
+          style={{ width: '100%', height: 52, border: 'none', borderRadius: 14, background: 'var(--accent)', color: 'var(--on-accent)', font: "700 15px var(--ff)", cursor: 'pointer', boxShadow: 'var(--shadow-accent)', transition: 'opacity .15s' }}
         >
           Yes, help return it
         </button>
         <button
           onClick={() => setScreen('success')}
-          style={{ width: '100%', height: 48, border: '1px solid var(--line2)', borderRadius: 14, background: 'var(--surface)', color: 'var(--ink3)', font: "500 14px 'Plus Jakarta Sans'", cursor: 'pointer' }}
+          style={{ width: '100%', height: 48, border: '1px solid var(--line2)', borderRadius: 14, background: 'var(--surface)', color: 'var(--ink3)', font: "500 14px var(--ff)", cursor: 'pointer' }}
         >
           No thanks
         </button>
@@ -295,10 +295,10 @@ export default function FinderForm({
       <div key="hub" className="fd-screen">
         <style>{STYLES}</style>
         {backBtn('intro')}
-        <p style={{ font: "700 16px 'Plus Jakarta Sans'", color: 'var(--ink)', margin: '0 0 4px' }}>
+        <p style={{ font: "700 16px var(--ff)", color: 'var(--ink)', margin: '0 0 4px' }}>
           How would you like to help {firstName}?
         </p>
-        <p style={{ font: "400 13px/1.5 'Plus Jakarta Sans'", color: 'var(--ink3)', margin: '0 0 16px' }}>
+        <p style={{ font: "400 13px/1.5 var(--ff)", color: 'var(--ink3)', margin: '0 0 16px' }}>
           You can do more than one — add a location, a message, or your contact info.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -319,10 +319,10 @@ export default function FinderForm({
                   : opt.icon}
               </div>
               <div style={{ minWidth: 0, flex: 1 }}>
-                <p style={{ font: "700 14px 'Plus Jakarta Sans'", color: 'var(--ink)', margin: '0 0 3px' }}>{opt.title}</p>
-                <p style={{ font: "400 13px/1.4 'Plus Jakarta Sans'", color: 'var(--ink3)', margin: 0 }}>{opt.body}</p>
+                <p style={{ font: "700 14px var(--ff)", color: 'var(--ink)', margin: '0 0 3px' }}>{opt.title}</p>
+                <p style={{ font: "400 13px/1.4 var(--ff)", color: 'var(--ink3)', margin: 0 }}>{opt.body}</p>
                 {opt.doneLabel && (
-                  <span style={{ display: 'inline-block', marginTop: 6, font: "600 11px 'Plus Jakarta Sans'", color: 'var(--accent-ink)', background: 'var(--accent-soft)', padding: '2px 8px', borderRadius: 999 }}>
+                  <span style={{ display: 'inline-block', marginTop: 6, font: "600 11px var(--ff)", color: 'var(--accent-ink)', background: 'var(--accent-soft)', padding: '2px 8px', borderRadius: 999 }}>
                     {opt.doneLabel}
                   </span>
                 )}
@@ -335,7 +335,7 @@ export default function FinderForm({
         {anyShared && (
           <button
             onClick={() => setScreen('success')}
-            style={{ width: '100%', height: 50, marginTop: 16, border: 'none', borderRadius: 14, background: 'var(--accent)', color: 'var(--on-accent)', font: "700 15px 'Plus Jakarta Sans'", cursor: 'pointer', boxShadow: 'var(--shadow-accent)' }}
+            style={{ width: '100%', height: 50, marginTop: 16, border: 'none', borderRadius: 14, background: 'var(--accent)', color: 'var(--on-accent)', font: "700 15px var(--ff)", cursor: 'pointer', boxShadow: 'var(--shadow-accent)' }}
           >
             Done — I've helped
           </button>
@@ -355,36 +355,36 @@ export default function FinderForm({
         <div style={{ width: 56, height: 56, borderRadius: 18, background: 'var(--accent-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px' }}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
-        <h2 style={{ font: "700 18px 'Plus Jakarta Sans'", margin: '0 0 8px' }}>Where did you find it?</h2>
-        <p style={{ font: "400 14px/1.5 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: 0 }}>
+        <h2 style={{ font: "700 18px var(--ff)", margin: '0 0 8px' }}>Where did you find it?</h2>
+        <p style={{ font: "400 14px/1.5 var(--ff)", color: 'var(--ink2)', margin: 0 }}>
           Use your phone's GPS for the exact spot, or type an address if that's easier or more accurate.
         </p>
       </div>
 
       {/* ── GPS path ── */}
       {locationState === 'idle' && (
-        <button onClick={requestLocation} style={{ width: '100%', height: 52, border: 'none', borderRadius: 14, background: 'var(--accent)', color: 'var(--on-accent)', font: "700 15px 'Plus Jakarta Sans'", cursor: 'pointer' }}>
+        <button onClick={requestLocation} style={{ width: '100%', height: 52, border: 'none', borderRadius: 14, background: 'var(--accent)', color: 'var(--on-accent)', font: "700 15px var(--ff)", cursor: 'pointer' }}>
           Use my current location
         </button>
       )}
       {locationState === 'loading' && (
-        <div style={{ height: 52, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 14, background: 'var(--surface2)', border: '1px solid var(--line2)', font: "500 14px 'Plus Jakarta Sans'", color: 'var(--ink3)', gap: 8 }}>
+        <div style={{ height: 52, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 14, background: 'var(--surface2)', border: '1px solid var(--line2)', font: "500 14px var(--ff)", color: 'var(--ink3)', gap: 8 }}>
           <Dots /> Getting your location…
         </div>
       )}
       {locationState === 'captured' && lat != null && lng != null && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <LocationMap lat={lat} lng={lng} height={170} />
-          <button onClick={sendLocation} disabled={loading} style={{ width: '100%', height: 52, border: 'none', borderRadius: 14, background: 'var(--accent)', color: 'var(--on-accent)', font: "700 15px 'Plus Jakarta Sans'", cursor: loading ? 'wait' : 'pointer', opacity: loading ? 0.7 : 1 }}>
+          <button onClick={sendLocation} disabled={loading} style={{ width: '100%', height: 52, border: 'none', borderRadius: 14, background: 'var(--accent)', color: 'var(--on-accent)', font: "700 15px var(--ff)", cursor: loading ? 'wait' : 'pointer', opacity: loading ? 0.7 : 1 }}>
             {loading ? 'Sending…' : locationShared ? 'Update location' : `Send this location`}
           </button>
-          <button onClick={() => { setLat(null); setLng(null); setLocationState('idle') }} style={{ border: 'none', background: 'transparent', font: "500 13px 'Plus Jakarta Sans'", color: 'var(--ink3)', cursor: 'pointer', padding: 0 }}>
+          <button onClick={() => { setLat(null); setLng(null); setLocationState('idle') }} style={{ border: 'none', background: 'transparent', font: "500 13px var(--ff)", color: 'var(--ink3)', cursor: 'pointer', padding: 0 }}>
             This spot looks wrong — enter an address instead
           </button>
         </div>
       )}
       {locationState === 'denied' && (
-        <div style={{ padding: '12px 16px', borderRadius: 12, background: 'var(--surface2)', border: '1px solid var(--line2)', font: "400 13px/1.5 'Plus Jakarta Sans'", color: 'var(--ink3)' }}>
+        <div style={{ padding: '12px 16px', borderRadius: 12, background: 'var(--surface2)', border: '1px solid var(--line2)', font: "400 13px/1.5 var(--ff)", color: 'var(--ink3)' }}>
           Location access was denied — no problem. Just type the address or a landmark below.
         </div>
       )}
@@ -394,7 +394,7 @@ export default function FinderForm({
         <>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, margin: '18px 0' }}>
             <div style={{ flex: 1, height: 1, background: 'var(--line2)' }} />
-            <span style={{ font: "500 12px 'Plus Jakarta Sans'", color: 'var(--ink3)' }}>or enter it manually</span>
+            <span style={{ font: "500 12px var(--ff)", color: 'var(--ink3)' }}>or enter it manually</span>
             <div style={{ flex: 1, height: 1, background: 'var(--line2)' }} />
           </div>
           <textarea
@@ -405,11 +405,11 @@ export default function FinderForm({
             className="input"
             style={{ resize: 'none', lineHeight: 1.5, marginBottom: 12 }}
           />
-          {error && <p style={{ font: "400 13px 'Plus Jakarta Sans'", color: 'var(--error)', margin: '0 0 10px' }}>{error}</p>}
+          {error && <p style={{ font: "400 13px var(--ff)", color: 'var(--error)', margin: '0 0 10px' }}>{error}</p>}
           <button
             onClick={sendManualLocation}
             disabled={!canSendManual || loading}
-            style={{ width: '100%', height: 52, border: 'none', borderRadius: 14, background: canSendManual ? 'var(--accent)' : 'var(--line2)', color: canSendManual ? 'var(--on-accent)' : 'var(--ink3)', font: "700 15px 'Plus Jakarta Sans'", cursor: canSendManual && !loading ? 'pointer' : 'default', transition: 'background .15s, color .15s', opacity: loading ? 0.7 : 1 }}
+            style={{ width: '100%', height: 52, border: 'none', borderRadius: 14, background: canSendManual ? 'var(--accent)' : 'var(--line2)', color: canSendManual ? 'var(--on-accent)' : 'var(--ink3)', font: "700 15px var(--ff)", cursor: canSendManual && !loading ? 'pointer' : 'default', transition: 'background .15s, color .15s', opacity: loading ? 0.7 : 1 }}
           >
             {loading ? 'Sending…' : 'Send this address'}
           </button>
@@ -430,8 +430,8 @@ export default function FinderForm({
           <div style={{ width: 56, height: 56, borderRadius: 18, background: 'var(--accent-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px' }}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           </div>
-          <h2 style={{ font: "700 18px 'Plus Jakarta Sans'", margin: '0 0 8px' }}>Send a message</h2>
-          <p style={{ font: "400 14px/1.5 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: 0 }}>
+          <h2 style={{ font: "700 18px var(--ff)", margin: '0 0 8px' }}>Send a message</h2>
+          <p style={{ font: "400 14px/1.5 var(--ff)", color: 'var(--ink2)', margin: 0 }}>
             {firstName} will get a chat request. Once they accept, you can talk back and forth securely.
           </p>
         </div>
@@ -444,11 +444,11 @@ export default function FinderForm({
           style={{ resize: 'none', lineHeight: 1.6, marginBottom: 12 }}
           autoFocus
         />
-        {error && <p style={{ font: "400 13px 'Plus Jakarta Sans'", color: 'var(--error)', margin: '0 0 10px' }}>{error}</p>}
+        {error && <p style={{ font: "400 13px var(--ff)", color: 'var(--error)', margin: '0 0 10px' }}>{error}</p>}
         <button
           onClick={sendFirstMessage}
           disabled={!canSend || loading}
-          style={{ width: '100%', height: 52, border: 'none', borderRadius: 14, background: canSend ? 'var(--accent)' : 'var(--line2)', color: canSend ? 'var(--on-accent)' : 'var(--ink3)', font: "700 15px 'Plus Jakarta Sans'", cursor: canSend && !loading ? 'pointer' : 'default', transition: 'background .15s, color .15s', opacity: loading ? 0.7 : 1 }}
+          style={{ width: '100%', height: 52, border: 'none', borderRadius: 14, background: canSend ? 'var(--accent)' : 'var(--line2)', color: canSend ? 'var(--on-accent)' : 'var(--ink3)', font: "700 15px var(--ff)", cursor: canSend && !loading ? 'pointer' : 'default', transition: 'background .15s, color .15s', opacity: loading ? 0.7 : 1 }}
         >
           {loading ? 'Sending…' : 'Send chat request'}
         </button>
@@ -467,8 +467,8 @@ export default function FinderForm({
           <div style={{ width: 56, height: 56, borderRadius: 18, background: 'var(--accent-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px' }}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.6"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
-          <h2 style={{ font: "700 18px 'Plus Jakarta Sans'", margin: '0 0 8px' }}>Share your contact info</h2>
-          <p style={{ font: "400 14px/1.5 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: 0 }}>
+          <h2 style={{ font: "700 18px var(--ff)", margin: '0 0 8px' }}>Share your contact info</h2>
+          <p style={{ font: "400 14px/1.5 var(--ff)", color: 'var(--ink2)', margin: 0 }}>
             Leave at least one way for {firstName} to reach you. All fields are optional.
           </p>
         </div>
@@ -505,15 +505,15 @@ export default function FinderForm({
           </div>
         </div>
         {!hasAtLeastOne && Object.keys(contactErrors).length === 0 && (
-          <p style={{ font: "400 12px 'Plus Jakarta Sans'", color: 'var(--ink3)', margin: '0 0 10px', textAlign: 'center' }}>
+          <p style={{ font: "400 12px var(--ff)", color: 'var(--ink3)', margin: '0 0 10px', textAlign: 'center' }}>
             Fill in at least one field so {firstName} can reach you.
           </p>
         )}
-        {error && <p style={{ font: "400 13px 'Plus Jakarta Sans'", color: 'var(--error)', margin: '0 0 10px' }}>{error}</p>}
+        {error && <p style={{ font: "400 13px var(--ff)", color: 'var(--error)', margin: '0 0 10px' }}>{error}</p>}
         <button
           onClick={sendContact}
           disabled={!hasAtLeastOne || loading}
-          style={{ width: '100%', height: 52, border: 'none', borderRadius: 14, background: hasAtLeastOne ? 'var(--accent)' : 'var(--line2)', color: hasAtLeastOne ? 'var(--on-accent)' : 'var(--ink3)', font: "700 15px 'Plus Jakarta Sans'", cursor: hasAtLeastOne && !loading ? 'pointer' : 'default', transition: 'background .15s', opacity: loading ? 0.7 : 1 }}
+          style={{ width: '100%', height: 52, border: 'none', borderRadius: 14, background: hasAtLeastOne ? 'var(--accent)' : 'var(--line2)', color: hasAtLeastOne ? 'var(--on-accent)' : 'var(--ink3)', font: "700 15px var(--ff)", cursor: hasAtLeastOne && !loading ? 'pointer' : 'default', transition: 'background .15s', opacity: loading ? 0.7 : 1 }}
         >
           {loading ? 'Sending…' : contactShared ? 'Update details' : `Send to ${firstName}`}
         </button>
@@ -541,10 +541,10 @@ export default function FinderForm({
                 className={isNew ? 'fd-bubble' : undefined}
                 style={{ display: 'flex', flexDirection: 'column', alignItems: isFinder ? 'flex-end' : 'flex-start', gap: 4 }}
               >
-                <span style={{ font: "500 11px 'Plus Jakarta Sans'", color: 'var(--ink3)', ...(isFinder ? { paddingRight: 2 } : { paddingLeft: 2 }) }}>
+                <span style={{ font: "500 11px var(--ff)", color: 'var(--ink3)', ...(isFinder ? { paddingRight: 2 } : { paddingLeft: 2 }) }}>
                   {isFinder ? 'You' : firstName}
                 </span>
-                <div style={{ maxWidth: '80%', padding: '10px 14px', borderRadius: isFinder ? '14px 4px 14px 14px' : '4px 14px 14px 14px', background: isFinder ? 'var(--accent)' : 'var(--surface2)', border: isFinder ? 'none' : '1px solid var(--line)', font: "400 14px/1.5 'Plus Jakarta Sans'", color: isFinder ? 'var(--on-accent)' : 'var(--ink)' }}>
+                <div style={{ maxWidth: '80%', padding: '10px 14px', borderRadius: isFinder ? '14px 4px 14px 14px' : '4px 14px 14px 14px', background: isFinder ? 'var(--accent)' : 'var(--surface2)', border: isFinder ? 'none' : '1px solid var(--line)', font: "400 14px/1.5 var(--ff)", color: isFinder ? 'var(--on-accent)' : 'var(--ink)' }}>
                   {e.payload?.message}
                 </div>
               </div>
@@ -555,14 +555,14 @@ export default function FinderForm({
           {chatDeclined ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', borderRadius: 12, background: 'var(--surface2)', border: '1px solid var(--line)' }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink3)" strokeWidth="1.6" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
-              <span style={{ font: "400 13px/1.4 'Plus Jakarta Sans'", color: 'var(--ink3)' }}>
+              <span style={{ font: "400 13px/1.4 var(--ff)", color: 'var(--ink3)' }}>
                 {firstName} isn't able to chat right now. Thanks for reaching out — your message was delivered.
               </span>
             </div>
           ) : !chatAccepted ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', borderRadius: 12, background: 'var(--accent-soft)', border: '1px solid var(--accent-soft2)' }}>
               <Dots />
-              <span style={{ font: "400 13px/1.4 'Plus Jakarta Sans'", color: 'var(--accent-ink)' }}>
+              <span style={{ font: "400 13px/1.4 var(--ff)", color: 'var(--accent-ink)' }}>
                 Chat request sent — waiting for {firstName} to accept…
               </span>
             </div>
@@ -579,12 +579,12 @@ export default function FinderForm({
               onChange={e => setReplyText(e.target.value)}
               rows={2}
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendFinderReply() } }}
-              style={{ flex: 1, padding: '10px 12px', borderRadius: 12, border: '1px solid var(--line2)', background: 'var(--surface)', font: "400 14px 'Plus Jakarta Sans'", color: 'var(--ink)', resize: 'none', outline: 'none', lineHeight: 1.5 }}
+              style={{ flex: 1, padding: '10px 12px', borderRadius: 12, border: '1px solid var(--line2)', background: 'var(--surface)', font: "400 14px var(--ff)", color: 'var(--ink)', resize: 'none', outline: 'none', lineHeight: 1.5 }}
             />
             <button
               onClick={sendFinderReply}
               disabled={!replyText.trim() || replySending}
-              style={{ height: 44, padding: '0 16px', borderRadius: 12, border: 'none', background: replyText.trim() ? 'var(--accent)' : 'var(--line2)', color: replyText.trim() ? 'var(--on-accent)' : 'var(--ink3)', font: "600 13px 'Plus Jakarta Sans'", cursor: replyText.trim() ? 'pointer' : 'default', flexShrink: 0, transition: 'background .15s, color .15s', opacity: replySending ? 0.7 : 1 }}
+              style={{ height: 44, padding: '0 16px', borderRadius: 12, border: 'none', background: replyText.trim() ? 'var(--accent)' : 'var(--line2)', color: replyText.trim() ? 'var(--on-accent)' : 'var(--ink3)', font: "600 13px var(--ff)", cursor: replyText.trim() ? 'pointer' : 'default', flexShrink: 0, transition: 'background .15s, color .15s', opacity: replySending ? 0.7 : 1 }}
             >
               {replySending ? '…' : 'Send'}
             </button>
@@ -593,7 +593,7 @@ export default function FinderForm({
 
         <button
           onClick={() => setScreen('success')}
-          style={{ border: 'none', background: 'transparent', font: "500 12px 'Plus Jakarta Sans'", color: 'var(--ink3)', cursor: 'pointer', padding: '4px 0', textAlign: 'center' }}
+          style={{ border: 'none', background: 'transparent', font: "500 12px var(--ff)", color: 'var(--ink3)', cursor: 'pointer', padding: '4px 0', textAlign: 'center' }}
         >
           Done — close chat
         </button>
@@ -608,22 +608,22 @@ export default function FinderForm({
       <div style={{ width: 68, height: 68, borderRadius: '50%', background: '#e4f0e9', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', animation: 'successPop .4s cubic-bezier(.22,.61,.36,1) both' }}>
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#3a8a64" strokeWidth="2.2"><path d="M20 6 9 17l-5-5"/></svg>
       </div>
-      <h2 style={{ font: "800 22px/1.2 'Plus Jakarta Sans'", letterSpacing: '-.02em', margin: '0 0 10px' }}>
+      <h2 style={{ font: "800 22px/1.2 var(--ff)", letterSpacing: '-.02em', margin: '0 0 10px' }}>
         Thanks for helping!
       </h2>
-      <p style={{ font: "400 14px/1.6 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: '0 0 20px' }}>
+      <p style={{ font: "400 14px/1.6 var(--ff)", color: 'var(--ink2)', margin: '0 0 20px' }}>
         {firstName} has been notified and will be in touch. You're a good person.
       </p>
       {chatRequested && !chatDeclined && (
         <button
           onClick={() => setScreen('chatroom')}
-          style={{ width: '100%', height: 46, marginBottom: 14, border: '1px solid var(--line2)', borderRadius: 12, background: 'var(--surface)', color: 'var(--ink2)', font: "600 14px 'Plus Jakarta Sans'", cursor: 'pointer' }}
+          style={{ width: '100%', height: 46, marginBottom: 14, border: '1px solid var(--line2)', borderRadius: 12, background: 'var(--surface)', color: 'var(--ink2)', font: "600 14px var(--ff)", cursor: 'pointer' }}
         >
           Back to chat
         </button>
       )}
       <div style={{ padding: '12px 16px', borderRadius: 12, background: 'var(--accent-soft)', border: '1px solid var(--accent-soft2)' }}>
-        <p style={{ font: "400 13px/1.5 'Plus Jakarta Sans'", color: 'var(--accent-ink)', margin: 0 }}>
+        <p style={{ font: "400 13px/1.5 var(--ff)", color: 'var(--accent-ink)', margin: 0 }}>
           The owner's contact info was never visible to you — that's Foundly keeping both sides private.
         </p>
       </div>
@@ -649,18 +649,18 @@ function ResolvedView({ firstName, itemName }: { firstName: string; itemName: st
         </div>
       </div>
 
-      <h2 style={{ font: "800 22px/1.25 'Plus Jakarta Sans'", letterSpacing: '-.02em', margin: '0 0 10px', animation: 'rvLift .4s .25s ease both' }}>
+      <h2 style={{ font: "800 22px/1.25 var(--ff)", letterSpacing: '-.02em', margin: '0 0 10px', animation: 'rvLift .4s .25s ease both' }}>
         Recovery complete
       </h2>
-      <p style={{ font: "400 14px/1.6 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: '0 0 8px', animation: 'rvLift .4s .35s ease both' }}>
+      <p style={{ font: "400 14px/1.6 var(--ff)", color: 'var(--ink2)', margin: '0 0 8px', animation: 'rvLift .4s .35s ease both' }}>
         {firstName} has their {itemName} back and marked this case resolved. The chat is now closed.
       </p>
-      <p style={{ font: "400 14px/1.6 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: '0 0 22px', animation: 'rvLift .4s .45s ease both' }}>
+      <p style={{ font: "400 14px/1.6 var(--ff)", color: 'var(--ink2)', margin: '0 0 22px', animation: 'rvLift .4s .45s ease both' }}>
         None of this happens without people like you. Thank you.
       </p>
 
       <div style={{ padding: '14px 16px', borderRadius: 12, background: 'var(--accent-soft)', border: '1px solid var(--accent-soft2)', animation: 'rvLift .4s .55s ease both' }}>
-        <p style={{ font: "600 13px/1.6 'Plus Jakarta Sans'", color: 'var(--accent-ink)', margin: 0 }}>
+        <p style={{ font: "600 13px/1.6 var(--ff)", color: 'var(--accent-ink)', margin: 0 }}>
           With gratitude and a blessing from all of us at Foundly. 💚
         </p>
       </div>
@@ -671,7 +671,7 @@ function ResolvedView({ firstName, itemName }: { firstName: string; itemName: st
 // Inline per-field error text shown under a contact input
 function FieldError({ children }: { children: React.ReactNode }) {
   return (
-    <p style={{ display: 'flex', alignItems: 'center', gap: 5, font: "500 12px 'Plus Jakarta Sans'", color: 'var(--error)', margin: '6px 2px 0' }}>
+    <p style={{ display: 'flex', alignItems: 'center', gap: 5, font: "500 12px var(--ff)", color: 'var(--error)', margin: '6px 2px 0' }}>
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
       {children}
     </p>

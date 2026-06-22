@@ -85,11 +85,11 @@ function Result({ icon, title, body, cta }: {
             {ic.path}
           </svg>
         </div>
-        <h1 style={{ font: "800 24px/1.2 'Plus Jakarta Sans'", letterSpacing: '-.02em', margin: '0 0 12px' }}>{title}</h1>
-        <p style={{ font: "400 15px/1.6 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: '0 0 28px' }}>{body}</p>
+        <h1 style={{ font: "800 24px/1.2 var(--ff)", letterSpacing: '-.02em', margin: '0 0 12px' }}>{title}</h1>
+        <p style={{ font: "400 15px/1.6 var(--ff)", color: 'var(--ink2)', margin: '0 0 28px' }}>{body}</p>
         <Link
           href={cta.href}
-          style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', borderRadius: 12, background: 'var(--accent)', color: 'var(--on-accent)', font: "600 14px 'Plus Jakarta Sans'", textDecoration: 'none' }}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', borderRadius: 12, background: 'var(--accent)', color: 'var(--on-accent)', font: "600 14px var(--ff)", textDecoration: 'none' }}
         >
           {cta.label}
         </Link>

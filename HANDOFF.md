@@ -101,9 +101,31 @@ The committed batch for this session. (Raw wishlist lives in `TODO.md`.)
    shapes (`0…`, `+972…`, `972…`, spaces/dashes) → store canonical **E.164** (`+972…`).
    Inline per-field error like the email check. File: `src/app/found/[serial]/FinderForm.tsx`
    (`validateContact()`). Numbers outside the +972 plan don't validate (Israel-only for now).
-2. **Hebrew font + RTL pass (done together)** — ship a proper Hebrew webfont
-   (Heebo / Assistant / Rubik / Noto Sans Hebrew); Hebrew text uses it, Latin keeps
-   Plus Jakarta Sans. Same pass: mirror layouts for RTL (was all LTR).
+2. **Full trilingual i18n + RTL (MAJOR — own track, multi-phase)** — the service must
+   support **Hebrew (primary, RTL)**, **English (secondary, LTR)**, **Arabic (tertiary, RTL)**.
+   Today the UI is 100% hardcoded English with no i18n system, so this is foundational, not a
+   font tweak. Hebrew + Arabic fonts must be tested & implemented properly (user's emphasis).
+   Recommended architecture:
+   - **Routing/strings:** `next-intl` — locale-prefixed routes (`/he` default, `/en`, `/ar`),
+     message catalogs `he.json` / `en.json` / `ar.json`. Extract every hardcoded string.
+   - **Direction:** `dir="rtl"` for he/ar, `dir="ltr"` for en, set on `<html>` per locale.
+   - **Fonts:** Latin = Plus Jakarta Sans; Hebrew = Heebo; Arabic = Noto Sans Arabic.
+     Map Hebrew/Arabic unicode-ranges onto the existing `'Plus Jakarta Sans'` family via
+     `@font-face` aliasing so the hundreds of inline `font:` shorthands get correct glyphs
+     without being individually edited.
+   - **RTL layout:** convert physical CSS props (margin-left, left/right, chevron SVGs) to
+     logical equivalents / direction-aware. Large mechanical pass across components.
+   - **Translations:** he by user (native); ar needs native review. I can draft, user verifies.
+   - **Phases:** (1) ✅ **DONE** — fonts implemented & verified. Heebo (Hebrew) + Noto Sans
+     Arabic loaded via `@font-face` (own family names, unicode-range); a single `--ff` stack
+     (`'Plus Jakarta Sans','Heebo','Noto Sans Arabic',sans-serif`) in `globals.css :root`;
+     all 197 inline `'Plus Jakarta Sans'` references across `.tsx` swept to `var(--ff)`.
+     Verified in-browser: Latin→PJS, Hebrew→Heebo, Arabic→Noto render exactly (font files
+     fetched, glyph widths match the reference fonts). Note: same-family aliasing was tried
+     first but fails in Chromium's weight matching — the multi-family stack is the fix.
+     Email templates in `api/**/route.ts` were intentionally left on literal fonts.
+     (2) next-intl routing + dir switching + locale switcher; (3) string extraction +
+     catalogs; (4) translate; (5) RTL layout mirror pass; (6) QA each locale.
 3. **Profile editing — name only (partial)** — let the owner edit their first/last name in
    settings. Email change stays deferred (needs its own verification flow).
 4. **Polish `/dashboard/items`** — basic CRUD exists; bring it up to the design system.

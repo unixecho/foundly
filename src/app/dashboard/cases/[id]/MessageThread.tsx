@@ -102,17 +102,17 @@ export default function MessageThread({
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ink3)" strokeWidth="1.6"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8"/><path d="M10 12h4"/></svg>
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <p style={{ font: "600 13.5px 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: '0 0 2px' }}>
+            <p style={{ font: "600 13.5px var(--ff)", color: 'var(--ink2)', margin: '0 0 2px' }}>
               Conversation archived
             </p>
-            <p style={{ font: "400 12px 'Plus Jakarta Sans'", color: 'var(--ink3)', margin: 0 }}>
+            <p style={{ font: "400 12px var(--ff)", color: 'var(--ink3)', margin: 0 }}>
               {messageCount} message{messageCount !== 1 ? 's' : ''} · packed away, read-only
             </p>
           </div>
           {messageCount > 0 && (
             <button
               onClick={() => setExpanded(v => !v)}
-              style={{ flexShrink: 0, border: '1px solid var(--line2)', background: 'var(--surface)', borderRadius: 10, padding: '7px 12px', font: "600 12px 'Plus Jakarta Sans'", color: 'var(--ink2)', cursor: 'pointer' }}
+              style={{ flexShrink: 0, border: '1px solid var(--line2)', background: 'var(--surface)', borderRadius: 10, padding: '7px 12px', font: "600 12px var(--ff)", color: 'var(--ink2)', cursor: 'pointer' }}
             >
               {expanded ? 'Hide' : 'View'}
             </button>
@@ -165,12 +165,12 @@ export default function MessageThread({
           onKeyDown={e => {
             if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendReply() }
           }}
-          style={{ flex: 1, padding: '10px 12px', borderRadius: 12, border: '1px solid var(--line2)', background: 'var(--surface)', font: "400 14px 'Plus Jakarta Sans'", color: 'var(--ink)', resize: 'none', outline: 'none', lineHeight: 1.5 }}
+          style={{ flex: 1, padding: '10px 12px', borderRadius: 12, border: '1px solid var(--line2)', background: 'var(--surface)', font: "400 14px var(--ff)", color: 'var(--ink)', resize: 'none', outline: 'none', lineHeight: 1.5 }}
         />
         <button
           onClick={sendReply}
           disabled={!reply.trim() || sending}
-          style={{ height: 44, padding: '0 16px', borderRadius: 12, border: 'none', background: reply.trim() ? 'var(--accent)' : 'var(--line2)', color: reply.trim() ? 'var(--on-accent)' : 'var(--ink3)', font: "600 13px 'Plus Jakarta Sans'", cursor: reply.trim() && !sending ? 'pointer' : 'default', flexShrink: 0, transition: 'background .15s, color .15s', opacity: sending ? 0.7 : 1 }}
+          style={{ height: 44, padding: '0 16px', borderRadius: 12, border: 'none', background: reply.trim() ? 'var(--accent)' : 'var(--line2)', color: reply.trim() ? 'var(--on-accent)' : 'var(--ink3)', font: "600 13px var(--ff)", cursor: reply.trim() && !sending ? 'pointer' : 'default', flexShrink: 0, transition: 'background .15s, color .15s', opacity: sending ? 0.7 : 1 }}
         >
           {sending ? '…' : 'Send'}
         </button>
@@ -201,10 +201,10 @@ function Bubble({
         ...(animate ? { animation: 'mtBubblePop .2s ease-out' } : {}),
       }}
     >
-      <span style={{ font: "500 11px 'Plus Jakarta Sans'", color: 'var(--ink3)', ...(isOwner ? { paddingRight: 2 } : { paddingLeft: 2 }) }}>
+      <span style={{ font: "500 11px var(--ff)", color: 'var(--ink3)', ...(isOwner ? { paddingRight: 2 } : { paddingLeft: 2 }) }}>
         {isOwner ? 'You' : 'Finder'}
       </span>
-      <div style={{ maxWidth: '80%', padding: '10px 14px', borderRadius: isOwner ? '14px 4px 14px 14px' : '4px 14px 14px 14px', background: isOwner ? 'var(--accent)' : 'var(--surface2)', border: isOwner ? 'none' : '1px solid var(--line)', font: "400 14px/1.5 'Plus Jakarta Sans'", color: isOwner ? 'var(--on-accent)' : 'var(--ink)' }}>
+      <div style={{ maxWidth: '80%', padding: '10px 14px', borderRadius: isOwner ? '14px 4px 14px 14px' : '4px 14px 14px 14px', background: isOwner ? 'var(--accent)' : 'var(--surface2)', border: isOwner ? 'none' : '1px solid var(--line)', font: "400 14px/1.5 var(--ff)", color: isOwner ? 'var(--on-accent)' : 'var(--ink)' }}>
         {message}
       </div>
       {timestamp && (

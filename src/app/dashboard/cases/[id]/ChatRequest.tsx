@@ -39,7 +39,7 @@ export default function ChatRequest({ caseId }: { caseId: string }) {
           display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
           flex: 1, height: 46, borderRadius: 12, border: 'none',
           background: 'var(--accent)', color: 'var(--on-accent)',
-          font: "700 14px 'Plus Jakarta Sans'",
+          font: "700 14px var(--ff)",
           cursor: busy ? 'wait' : 'pointer', opacity: busy ? 0.7 : 1,
           boxShadow: 'var(--shadow-accent)', transition: 'opacity .15s',
         }}
@@ -55,7 +55,7 @@ export default function ChatRequest({ caseId }: { caseId: string }) {
           display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
           height: 46, padding: '0 18px', borderRadius: 12,
           border: '1px solid var(--line2)', background: 'var(--surface)', color: 'var(--ink2)',
-          font: "600 14px 'Plus Jakarta Sans'",
+          font: "600 14px var(--ff)",
           cursor: busy ? 'wait' : 'pointer', opacity: busy ? 0.7 : 1, transition: 'opacity .15s',
         }}
       >

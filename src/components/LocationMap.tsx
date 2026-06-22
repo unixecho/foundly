@@ -41,7 +41,7 @@ export default function LocationMap({
           href={link}
           target="_blank"
           rel="noopener noreferrer"
-          style={{ flexShrink: 0, font: "600 12px 'Plus Jakarta Sans'", color: 'var(--accent-ink)', textDecoration: 'none', whiteSpace: 'nowrap' }}
+          style={{ flexShrink: 0, font: "600 12px var(--ff)", color: 'var(--accent-ink)', textDecoration: 'none', whiteSpace: 'nowrap' }}
         >
           Open in maps ↗
         </a>

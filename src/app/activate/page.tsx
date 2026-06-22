@@ -149,10 +149,10 @@ function ActivateContent() {
               <div style={{ width: 38 }} />
             </div>
 
-            <h2 style={{ font: "800 25px/1.2 'Plus Jakarta Sans'", letterSpacing: '-.02em', margin: '0 0 8px' }}>
+            <h2 style={{ font: "800 25px/1.2 var(--ff)", letterSpacing: '-.02em', margin: '0 0 8px' }}>
               Scan your tag's QR code
             </h2>
-            <p style={{ font: "400 14.5px/1.55 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: '0 0 22px' }}>
+            <p style={{ font: "400 14.5px/1.55 var(--ff)", color: 'var(--ink2)', margin: '0 0 22px' }}>
               Point your camera at the QR printed on the Foundly tag or its card. Each tag activates exactly once.
             </p>
 
@@ -184,7 +184,7 @@ function ActivateContent() {
                   <path d="M14 14h1v1h-1zM16 14h1v1h-1zM18 14h3v1h-3zM14 16h1v1h-1zM16 16h1v3h-1zM18 16h1v1h-1zM20 16h1v1h-1zM18 18h1v1h-1zM20 18h1v3h-1z"/>
                 </svg>
               </div>
-              <p style={{ position: 'absolute', bottom: 16, width: '100%', textAlign: 'center', font: "500 12px 'Plus Jakarta Sans'", color: 'rgba(255,255,255,.4)', margin: 0 }}>
+              <p style={{ position: 'absolute', bottom: 16, width: '100%', textAlign: 'center', font: "500 12px var(--ff)", color: 'rgba(255,255,255,.4)', margin: 0 }}>
                 Camera access required
               </p>
             </div>
@@ -192,7 +192,7 @@ function ActivateContent() {
             {/* Divider */}
             <div className="flex items-center gap-3 mb-4">
               <div style={{ flex: 1, height: 1, background: 'var(--line2)' }} />
-              <span style={{ font: "500 12px 'Plus Jakarta Sans'", color: 'var(--ink3)' }}>or enter the code</span>
+              <span style={{ font: "500 12px var(--ff)", color: 'var(--ink3)' }}>or enter the code</span>
               <div style={{ flex: 1, height: 1, background: 'var(--line2)' }} />
             </div>
 
@@ -224,11 +224,11 @@ function ActivateContent() {
             <div style={{ width: 84, height: 84, borderRadius: 26, background: 'var(--amber-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
               <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" strokeWidth="1.6"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
             </div>
-            <h2 style={{ font: "800 24px/1.22 'Plus Jakarta Sans'", letterSpacing: '-.02em', margin: '0 0 10px' }}>This tag's already in use</h2>
-            <p style={{ font: "400 15px/1.6 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: '0 0 8px', padding: '0 6px' }}>
+            <h2 style={{ font: "800 24px/1.22 var(--ff)", letterSpacing: '-.02em', margin: '0 0 10px' }}>This tag's already in use</h2>
+            <p style={{ font: "400 15px/1.6 var(--ff)", color: 'var(--ink2)', margin: '0 0 8px', padding: '0 6px' }}>
               Activation codes work once and then retire — that's what keeps a tag tied to a single owner. Nothing's wrong on your end.
             </p>
-            <p style={{ font: "400 13.5px/1.55 'Plus Jakarta Sans'", color: 'var(--ink3)', margin: '0 0 auto', padding: '0 10px' }}>
+            <p style={{ font: "400 13.5px/1.55 var(--ff)", color: 'var(--ink3)', margin: '0 0 auto', padding: '0 10px' }}>
               If you believe this tag should be yours, we can help you recover it.
             </p>
             <div className="flex flex-col gap-3 mt-8">
@@ -247,8 +247,8 @@ function ActivateContent() {
             <div style={{ width: 84, height: 84, borderRadius: 26, background: 'var(--error-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
               <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--error)" strokeWidth="1.6"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             </div>
-            <h2 style={{ font: "800 24px/1.22 'Plus Jakarta Sans'", letterSpacing: '-.02em', margin: '0 0 10px' }}>We couldn't read that code</h2>
-            <p style={{ font: "400 15px/1.6 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: '0 0 20px', padding: '0 6px' }}>
+            <h2 style={{ font: "800 24px/1.22 var(--ff)", letterSpacing: '-.02em', margin: '0 0 10px' }}>We couldn't read that code</h2>
+            <p style={{ font: "400 15px/1.6 var(--ff)", color: 'var(--ink2)', margin: '0 0 20px', padding: '0 6px' }}>
               It doesn't match any Foundly tag. Give it another scan, or double-check the code printed on the tag.
             </p>
             <div className="flex flex-col gap-2 mb-auto">
@@ -259,7 +259,7 @@ function ActivateContent() {
               ].map((hint, i) => (
                 <div key={i} className="flex items-center gap-2">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2" style={{ flexShrink: 0 }}><path d="M20 6 9 17l-5-5"/></svg>
-                  <span style={{ font: "400 13px 'Plus Jakarta Sans'", color: 'var(--ink2)' }}>{hint}</span>
+                  <span style={{ font: "400 13px var(--ff)", color: 'var(--ink2)' }}>{hint}</span>
                 </div>
               ))}
             </div>
@@ -287,15 +287,15 @@ function ActivateContent() {
             {/* Verified badge */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 9, padding: '9px 13px', borderRadius: 999, background: 'rgba(58,138,100,.1)', border: '1px solid rgba(58,138,100,.2)', width: 'fit-content', marginBottom: 20 }}>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2"><path d="M20 6 9 17l-5-5"/></svg>
-              <span style={{ font: "600 12.5px 'Plus Jakarta Sans'", color: '#2c6b4e' }}>
+              <span style={{ font: "600 12.5px var(--ff)", color: '#2c6b4e' }}>
                 Tag verified · <span className="mono">{verifiedCode}</span>
               </span>
             </div>
 
-            <h2 style={{ font: "800 25px/1.2 'Plus Jakarta Sans'", letterSpacing: '-.02em', margin: '0 0 8px' }}>
+            <h2 style={{ font: "800 25px/1.2 var(--ff)", letterSpacing: '-.02em', margin: '0 0 8px' }}>
               What is this tag protecting?
             </h2>
-            <p style={{ font: "400 14.5px/1.55 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: '0 0 22px' }}>
+            <p style={{ font: "400 14.5px/1.55 var(--ff)", color: 'var(--ink2)', margin: '0 0 22px' }}>
               Give it a nickname you'll recognise at a glance. It's only ever for your eyes.
             </p>
 
@@ -313,7 +313,7 @@ function ActivateContent() {
                 <span>{nicknameError}</span>
               </div>
             )}
-            <p style={{ font: "400 12px 'Plus Jakarta Sans'", color: 'var(--ink3)', margin: '0 0 20px' }}>
+            <p style={{ font: "400 12px var(--ff)", color: 'var(--ink3)', margin: '0 0 20px' }}>
               Descriptive names make it easier to identify recovered items.
             </p>
             <button
@@ -332,10 +332,10 @@ function ActivateContent() {
             <div style={{ width: 88, height: 88, borderRadius: 28, background: 'var(--green-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 26 }}>
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
             </div>
-            <h2 style={{ font: "800 28px/1.2 'Plus Jakarta Sans'", letterSpacing: '-.025em', margin: '0 0 12px' }}>
+            <h2 style={{ font: "800 28px/1.2 var(--ff)", letterSpacing: '-.025em', margin: '0 0 12px' }}>
               {nickname} is now protected.
             </h2>
-            <p style={{ font: "400 15px/1.6 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: '0 0 32px', padding: '0 12px' }}>
+            <p style={{ font: "400 15px/1.6 var(--ff)", color: 'var(--ink2)', margin: '0 0 32px', padding: '0 12px' }}>
               If someone finds it and scans the tag, you'll be notified right away.
             </p>
             <button onClick={() => router.push('/dashboard')} className="btn-primary" style={{ maxWidth: 240 }}>

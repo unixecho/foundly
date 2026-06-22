@@ -89,7 +89,7 @@ export default function CaseStatusForm({
           display: 'inline-flex', alignItems: 'center', gap: 8,
           padding: '10px 20px', borderRadius: 12, border: 'none',
           background: 'var(--ink)', color: 'var(--paper)',
-          font: "600 14px 'Plus Jakarta Sans'",
+          font: "600 14px var(--ff)",
           cursor: busy ? 'wait' : 'pointer',
           opacity: busy ? 0.65 : 1,
           transition: 'opacity .15s',
@@ -182,10 +182,10 @@ function ArchiveOverlay() {
         </div>
       </div>
 
-      <p style={{ font: "800 19px 'Plus Jakarta Sans'", color: 'var(--ink)', margin: '0 0 6px', animation: 'aoTextIn .4s .55s ease both' }}>
+      <p style={{ font: "800 19px var(--ff)", color: 'var(--ink)', margin: '0 0 6px', animation: 'aoTextIn .4s .55s ease both' }}>
         Case archived
       </p>
-      <p style={{ font: "400 13.5px 'Plus Jakarta Sans'", color: 'var(--ink3)', margin: 0, animation: 'aoTextIn .4s .7s ease both' }}>
+      <p style={{ font: "400 13.5px var(--ff)", color: 'var(--ink3)', margin: 0, animation: 'aoTextIn .4s .7s ease both' }}>
         Packing it away — back to your dashboard…
       </p>
     </div>

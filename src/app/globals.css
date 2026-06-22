@@ -1,10 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
+/* ── Hebrew + Arabic webfonts ─────────────────────────────────────────────────
+   The UI font (Plus Jakarta Sans) has no Hebrew/Arabic glyphs, so typed non-Latin
+   text fell back to an ugly OS default. We load Heebo (Hebrew) and Noto Sans Arabic
+   (Arabic) under their own names and reference them through the --ff font stack
+   below; CSS per-glyph fallback then renders each script in the right font.
+   (Aliasing onto the same family name fails in Chromium's weight matching, so we
+   use a real fallback stack instead.) Both are variable fonts (one file, 100–900). */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9H0TbFzsQ.woff2) format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+@font-face {
+  font-family: 'Noto Sans Arabic';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosansarabic/v33/nwpCtLGrOAZMl5nJ_wfgRg3DrWFZWsnVBJ_sS6tlqHHFlj4wv4r4xA.woff2) format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+08A0-08FF, U+200C-200E, U+2010-2011, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
+  /* ── Type ──
+     One app font stack: Latin → Plus Jakarta Sans, Hebrew → Heebo, Arabic → Noto Sans
+     Arabic, with a generic fallback. Every component references this via var(--ff) so
+     non-Latin content always renders in a proper font. */
+  --ff: 'Plus Jakarta Sans', 'Heebo', 'Noto Sans Arabic', sans-serif;
+
   /* ── Color ── */
   --ink:          #1c1d22;
   --ink2:         #5b5d66;
@@ -53,7 +83,7 @@
   }
 
   html {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--ff);
     background-color: var(--paper);
     color: var(--ink);
     -webkit-font-smoothing: antialiased;
@@ -114,7 +144,7 @@
     border-radius: 14px;
     background: var(--accent);
     color: var(--on-accent);
-    font: 600 15px 'Plus Jakarta Sans', sans-serif;
+    font: 600 15px var(--ff);
     cursor: pointer;
     box-shadow: var(--shadow-accent);
     transition: opacity 0.15s;
@@ -138,7 +168,7 @@
     border-radius: 14px;
     background: var(--surface);
     color: var(--ink2);
-    font: 600 15px 'Plus Jakarta Sans', sans-serif;
+    font: 600 15px var(--ff);
     cursor: pointer;
   }
 
@@ -151,7 +181,7 @@
     border-radius: 14px;
     padding: 0 16px;
     background: var(--surface);
-    font: 400 15px 'Plus Jakarta Sans', sans-serif;
+    font: 400 15px var(--ff);
     color: var(--ink);
     outline: none;
     width: 100%;
@@ -179,7 +209,7 @@
     gap: 6px;
     padding: 4px 10px;
     border-radius: 999px;
-    font: 600 12px 'Plus Jakarta Sans', sans-serif;
+    font: 600 12px var(--ff);
   }
   .chip-dot {
     width: 6px;
@@ -200,7 +230,7 @@
 
   /* ── Label (uppercase caps) ── */
   .label {
-    font: 600 12px 'Plus Jakarta Sans', sans-serif;
+    font: 600 12px var(--ff);
     color: var(--ink3);
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -231,7 +261,7 @@
     border-radius: 12px;
     background: var(--error-soft);
     border: 1px solid rgba(192, 57, 43, 0.12);
-    font: 500 13px 'Plus Jakarta Sans', sans-serif;
+    font: 500 13px var(--ff);
     color: var(--error);
   }
 

@@ -42,14 +42,14 @@ export default function DemoBanner({ className }: { className?: string }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c08a2e" strokeWidth="1.6" style={{ flexShrink: 0 }}><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           <div>
-            <p style={{ font: "700 13px 'Plus Jakarta Sans'", color: '#8a5a16', margin: '0 0 1px' }}>Demo mode</p>
-            <p style={{ font: "400 12px 'Plus Jakarta Sans'", color: '#a07030', margin: 0 }}>Test the full finder workflow end-to-end</p>
+            <p style={{ font: "700 13px var(--ff)", color: '#8a5a16', margin: '0 0 1px' }}>Demo mode</p>
+            <p style={{ font: "400 12px var(--ff)", color: '#a07030', margin: 0 }}>Test the full finder workflow end-to-end</p>
           </div>
         </div>
         <button
           onClick={seedAndOpen}
           disabled={state === 'loading'}
-          style={{ flexShrink: 0, padding: '8px 14px', borderRadius: 10, border: 'none', background: '#c08a2e', color: '#fff', font: "600 13px 'Plus Jakarta Sans'", cursor: state === 'loading' ? 'wait' : 'pointer', opacity: state === 'loading' ? 0.7 : 1, whiteSpace: 'nowrap' }}
+          style={{ flexShrink: 0, padding: '8px 14px', borderRadius: 10, border: 'none', background: '#c08a2e', color: '#fff', font: "600 13px var(--ff)", cursor: state === 'loading' ? 'wait' : 'pointer', opacity: state === 'loading' ? 0.7 : 1, whiteSpace: 'nowrap' }}
         >
           {state === 'loading' ? 'Setting up…' : state === 'ready' ? 'Opened ↗' : 'Try finder page →'}
         </button>
@@ -57,7 +57,7 @@ export default function DemoBanner({ className }: { className?: string }) {
 
       {/* Manual serial entry — stand-in for scanning a physical tag */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, borderTop: '1px dashed rgba(192,138,46,.3)', paddingTop: 12 }}>
-        <span style={{ font: "500 12px 'Plus Jakarta Sans'", color: '#a07030', whiteSpace: 'nowrap', flexShrink: 0 }}>
+        <span style={{ font: "500 12px var(--ff)", color: '#a07030', whiteSpace: 'nowrap', flexShrink: 0 }}>
           Or enter a code
         </span>
         <input
@@ -71,7 +71,7 @@ export default function DemoBanner({ className }: { className?: string }) {
         <button
           onClick={openManual}
           disabled={!normalizeSerial(code)}
-          style={{ flexShrink: 0, padding: '8px 14px', borderRadius: 10, border: '1px solid rgba(192,138,46,.4)', background: '#fff', color: '#8a5a16', font: "600 13px 'Plus Jakarta Sans'", cursor: normalizeSerial(code) ? 'pointer' : 'default', opacity: normalizeSerial(code) ? 1 : 0.5, whiteSpace: 'nowrap' }}
+          style={{ flexShrink: 0, padding: '8px 14px', borderRadius: 10, border: '1px solid rgba(192,138,46,.4)', background: '#fff', color: '#8a5a16', font: "600 13px var(--ff)", cursor: normalizeSerial(code) ? 'pointer' : 'default', opacity: normalizeSerial(code) ? 1 : 0.5, whiteSpace: 'nowrap' }}
         >
           Open ↗
         </button>

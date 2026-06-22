@@ -24,12 +24,12 @@ export default async function CasesPage() {
 
   return (
     <div className="max-w-owner mx-auto">
-      <h1 style={{ font: "800 26px/1.2 'Plus Jakarta Sans'", letterSpacing: '-.025em', margin: '0 0 24px' }}>
+      <h1 style={{ font: "800 26px/1.2 var(--ff)", letterSpacing: '-.025em', margin: '0 0 24px' }}>
         Recovery cases
       </h1>
 
       {nothing && (
-        <p style={{ font: "400 14px 'Plus Jakarta Sans'", color: 'var(--ink3)' }}>
+        <p style={{ font: "400 14px var(--ff)", color: 'var(--ink3)' }}>
           No recovery cases yet. Cases are created when someone scans one of your tags.
         </p>
       )}
@@ -83,7 +83,7 @@ function CaseRow({ c }: { c: RecoveryCaseWithTag }) {
       style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '14px 15px', borderRadius: 16, background: 'var(--surface)', border: '1px solid var(--line)', textDecoration: 'none', boxShadow: '0 1px 2px rgba(28,29,34,.03)' }}
     >
       <div style={{ minWidth: 0 }}>
-        <p style={{ font: "600 15px 'Plus Jakarta Sans'", color: 'var(--ink)', margin: '0 0 3px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{itemName}</p>
+        <p style={{ font: "600 15px var(--ff)", color: 'var(--ink)', margin: '0 0 3px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{itemName}</p>
         <p style={{ font: "400 12px 'JetBrains Mono'", color: 'var(--ink3)', margin: 0 }}>
           {c.tags?.serial} · {new Date(c.opened_at).toLocaleDateString()}
         </p>
@@ -105,10 +105,10 @@ function ArchivedRow({ c }: { c: RecoveryCaseWithTag }) {
       style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '10px 14px', borderRadius: 12, background: 'var(--surface2)', border: '1px solid var(--line)', textDecoration: 'none', opacity: 0.72 }}
     >
       <div style={{ minWidth: 0, display: 'flex', alignItems: 'baseline', gap: 8 }}>
-        <span style={{ font: "500 14px 'Plus Jakarta Sans'", color: 'var(--ink2)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{itemName}</span>
+        <span style={{ font: "500 14px var(--ff)", color: 'var(--ink2)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{itemName}</span>
         <span style={{ font: "400 11px 'JetBrains Mono'", color: 'var(--ink3)', flexShrink: 0 }}>{c.tags?.serial}</span>
       </div>
-      <span style={{ font: "500 11px 'Plus Jakarta Sans'", color: 'var(--ink3)', flexShrink: 0 }}>
+      <span style={{ font: "500 11px var(--ff)", color: 'var(--ink3)', flexShrink: 0 }}>
         {new Date(c.opened_at).toLocaleDateString()}
       </span>
     </Link>

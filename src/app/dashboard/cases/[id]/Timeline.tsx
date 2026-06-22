@@ -59,7 +59,7 @@ export default function Timeline({
             key={e.id}
             className="flex gap-3"
             style={{
-              font: "400 13px 'Plus Jakarta Sans'",
+              font: "400 13px var(--ff)",
               color: 'var(--ink2)',
               // Only the freshly-arrived (last) item animates in
               ...(idx === events.length - 1 && idx >= initialEvents.length

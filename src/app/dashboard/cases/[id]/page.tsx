@@ -59,7 +59,7 @@ export default async function CaseDetailPage({
 
       {/* Header */}
       <div className="flex items-start gap-3 mb-1">
-        <h1 style={{ font: "800 27px/1.18 'Plus Jakarta Sans'", letterSpacing: '-.025em', margin: 0, flex: 1 }}>
+        <h1 style={{ font: "800 27px/1.18 var(--ff)", letterSpacing: '-.025em', margin: 0, flex: 1 }}>
           {itemName}
         </h1>
         <span className={statusChip[c.status] ?? 'chip'} style={{ marginTop: 6 }}>
@@ -76,11 +76,11 @@ export default async function CaseDetailPage({
         <section className="card p-5 mb-4" style={{ border: '1px solid var(--accent-soft2)', background: 'var(--accent-soft)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.7"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            <h2 style={{ font: "700 15px 'Plus Jakarta Sans'", margin: 0, color: 'var(--accent-ink)' }}>
+            <h2 style={{ font: "700 15px var(--ff)", margin: 0, color: 'var(--accent-ink)' }}>
               The finder wants to chat
             </h2>
           </div>
-          <p style={{ font: "400 13.5px/1.55 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: '0 0 14px' }}>
+          <p style={{ font: "400 13.5px/1.55 var(--ff)", color: 'var(--ink2)', margin: '0 0 14px' }}>
             Accept to start a private, two-way conversation. Your contact details stay hidden either way.
           </p>
 
@@ -90,7 +90,7 @@ export default async function CaseDetailPage({
               ? finderMessages.map(e => ({ id: e.id, text: (e.payload as any)?.message ?? '' }))
               : c.finder_message ? [{ id: 'fallback', text: c.finder_message }] : []
             ).map(m => (
-              <div key={m.id} style={{ alignSelf: 'flex-start', maxWidth: '85%', padding: '10px 14px', borderRadius: '4px 14px 14px 14px', background: 'var(--surface)', border: '1px solid var(--line)', font: "400 14px/1.5 'Plus Jakarta Sans'", color: 'var(--ink)' }}>
+              <div key={m.id} style={{ alignSelf: 'flex-start', maxWidth: '85%', padding: '10px 14px', borderRadius: '4px 14px 14px 14px', background: 'var(--surface)', border: '1px solid var(--line)', font: "400 14px/1.5 var(--ff)", color: 'var(--ink)' }}>
                 {m.text}
               </div>
             ))}
@@ -103,7 +103,7 @@ export default async function CaseDetailPage({
       {/* ── ACTIVE CHAT — live two-way thread ─────────────────────────────────── */}
       {chatState === 'active' && (
         <section className="card p-5 mb-4">
-          <h2 style={{ font: "700 15px 'Plus Jakarta Sans'", margin: '0 0 16px' }}>Messages</h2>
+          <h2 style={{ font: "700 15px var(--ff)", margin: '0 0 16px' }}>Messages</h2>
           <MessageThread
             caseId={c.id}
             initialEvents={chatEvents}
@@ -117,7 +117,7 @@ export default async function CaseDetailPage({
       {chatState === 'declined' && (
         <section className="card p-5 mb-4" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ink3)" strokeWidth="1.6" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
-          <p style={{ font: "400 14px 'Plus Jakarta Sans'", color: 'var(--ink3)', margin: 0 }}>
+          <p style={{ font: "400 14px var(--ff)", color: 'var(--ink3)', margin: 0 }}>
             You declined the chat request. The finder's other details (if any) are below.
           </p>
         </section>
@@ -126,7 +126,7 @@ export default async function CaseDetailPage({
       {/* Finder contact info */}
       {hasFinderContact && (
         <section className="card p-5 mb-4">
-          <h2 style={{ font: "700 15px 'Plus Jakarta Sans'", margin: '0 0 16px' }}>Finder information</h2>
+          <h2 style={{ font: "700 15px var(--ff)", margin: '0 0 16px' }}>Finder information</h2>
           <dl style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '10px 16px' }}>
             {[
               ['Name', c.finder_name],
@@ -134,8 +134,8 @@ export default async function CaseDetailPage({
               ['Phone', c.finder_phone],
             ].filter(([, v]) => v).map(([label, val]) => (
               <Fragment key={label as string}>
-                <dt style={{ font: "400 13px 'Plus Jakarta Sans'", color: 'var(--ink3)', margin: 0 }}>{label as string}</dt>
-                <dd style={{ font: "400 14px 'Plus Jakarta Sans'", color: 'var(--ink)', margin: 0 }}>{val as string}</dd>
+                <dt style={{ font: "400 13px var(--ff)", color: 'var(--ink3)', margin: 0 }}>{label as string}</dt>
+                <dd style={{ font: "400 14px var(--ff)", color: 'var(--ink)', margin: 0 }}>{val as string}</dd>
               </Fragment>
             ))}
           </dl>
@@ -145,11 +145,11 @@ export default async function CaseDetailPage({
       {/* Location with map preview */}
       {hasLocation && (
         <section className="card p-5 mb-4">
-          <h2 style={{ font: "700 15px 'Plus Jakarta Sans'", margin: '0 0 16px' }}>Where it was found</h2>
+          <h2 style={{ font: "700 15px var(--ff)", margin: '0 0 16px' }}>Where it was found</h2>
           {hasCoords ? (
             <LocationMap lat={lat!} lng={lng!} label={c.finder_location_label} />
           ) : (
-            <p style={{ font: "400 14px 'Plus Jakarta Sans'", color: 'var(--ink)', margin: 0 }}>
+            <p style={{ font: "400 14px var(--ff)", color: 'var(--ink)', margin: 0 }}>
               {c.finder_location_label}
             </p>
           )}
@@ -159,7 +159,7 @@ export default async function CaseDetailPage({
       {/* Nothing shared */}
       {!hasFinderContact && !hasLocation && chatState === 'none' && (
         <section className="card p-5 mb-4" style={{ textAlign: 'center' }}>
-          <p style={{ font: "400 14px 'Plus Jakarta Sans'", color: 'var(--ink3)', margin: 0 }}>
+          <p style={{ font: "400 14px var(--ff)", color: 'var(--ink3)', margin: 0 }}>
             The finder notified you anonymously without sharing any contact details.
           </p>
         </section>

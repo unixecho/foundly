@@ -48,11 +48,11 @@ export default function ProfileSection({
   return (
     <section className="card p-5 mb-4">
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
-        <h2 style={{ font: "700 16px 'Plus Jakarta Sans'", margin: 0 }}>Profile</h2>
+        <h2 style={{ font: "700 16px var(--ff)", margin: 0 }}>Profile</h2>
         {mode === 'view' && (
           <button
             onClick={() => setMode('edit')}
-            style={{ border: 'none', background: 'transparent', font: "600 12px 'Plus Jakarta Sans'", color: 'var(--accent)', cursor: 'pointer', padding: '4px 8px' }}
+            style={{ border: 'none', background: 'transparent', font: "600 12px var(--ff)", color: 'var(--accent)', cursor: 'pointer', padding: '4px 8px' }}
           >
             Edit name
           </button>
@@ -91,24 +91,24 @@ export default function ProfileSection({
               />
             </div>
           </div>
-          <p style={{ font: "400 12px 'Plus Jakarta Sans'", color: 'var(--ink3)', margin: '0 0 14px' }}>
+          <p style={{ font: "400 12px var(--ff)", color: 'var(--ink3)', margin: '0 0 14px' }}>
             Finders will see <b>{first.trim() || '—'} {lastInitial && `${lastInitial}.`}</b> — your last name stays private.
           </p>
           {error && (
-            <p style={{ font: "400 13px 'Plus Jakarta Sans'", color: 'var(--error)', margin: '0 0 10px' }}>{error}</p>
+            <p style={{ font: "400 13px var(--ff)", color: 'var(--error)', margin: '0 0 10px' }}>{error}</p>
           )}
           <div style={{ display: 'flex', gap: 8 }}>
             <button
               onClick={save}
               disabled={!valid || loading}
-              style={{ flex: 1, height: 46, border: 'none', borderRadius: 12, background: valid && !loading ? 'var(--accent)' : 'var(--line2)', color: valid && !loading ? 'var(--on-accent)' : 'var(--ink3)', font: "600 14px 'Plus Jakarta Sans'", cursor: valid && !loading ? 'pointer' : 'default', transition: 'all .15s' }}
+              style={{ flex: 1, height: 46, border: 'none', borderRadius: 12, background: valid && !loading ? 'var(--accent)' : 'var(--line2)', color: valid && !loading ? 'var(--on-accent)' : 'var(--ink3)', font: "600 14px var(--ff)", cursor: valid && !loading ? 'pointer' : 'default', transition: 'all .15s' }}
             >
               {loading ? 'Saving…' : 'Save name'}
             </button>
             <button
               onClick={cancel}
               disabled={loading}
-              style={{ height: 46, padding: '0 16px', border: '1px solid var(--line2)', borderRadius: 12, background: 'var(--surface)', font: "600 13px 'Plus Jakarta Sans'", color: 'var(--ink3)', cursor: 'pointer' }}
+              style={{ height: 46, padding: '0 16px', border: '1px solid var(--line2)', borderRadius: 12, background: 'var(--surface)', font: "600 13px var(--ff)", color: 'var(--ink3)', cursor: 'pointer' }}
             >
               Cancel
             </button>

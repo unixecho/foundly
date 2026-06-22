@@ -58,20 +58,20 @@ export default async function FoundPage({
         {isDemo && (
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 14px', borderRadius: 12, background: '#f6ecd8', border: '1px solid rgba(192,138,46,.3)', marginBottom: 20 }}>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c08a2e" strokeWidth="1.6" style={{ flexShrink: 0 }}><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            <p style={{ font: "600 12px 'Plus Jakarta Sans'", color: '#8a5a16', margin: 0 }}>Demo mode — this is a test tag</p>
+            <p style={{ font: "600 12px var(--ff)", color: '#8a5a16', margin: 0 }}>Demo mode — this is a test tag</p>
           </div>
         )}
 
         {/* Wordmark */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 24 }}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span style={{ font: "700 16px 'Plus Jakarta Sans'", color: 'var(--ink)' }}>Foundly</span>
+          <span style={{ font: "700 16px var(--ff)", color: 'var(--ink)' }}>Foundly</span>
         </div>
 
         {/* Privacy pill */}
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '6px 12px', borderRadius: 999, background: 'var(--accent-soft)', border: '1px solid var(--accent-soft2)', marginBottom: 20 }}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-          <span style={{ font: "600 12px 'Plus Jakarta Sans'", color: 'var(--accent-ink)' }}>
+          <span style={{ font: "600 12px var(--ff)", color: 'var(--accent-ink)' }}>
             No account needed · Owner&apos;s contact info stays private
           </span>
         </div>
@@ -81,7 +81,7 @@ export default async function FoundPage({
           <FinderForm tagId={tag.id} ownerName={ownerName} itemName={itemName} />
         </div>
 
-        <p style={{ font: "400 12px/1.5 'Plus Jakarta Sans'", color: 'var(--ink3)', textAlign: 'center', margin: '20px 0 0' }}>
+        <p style={{ font: "400 12px/1.5 var(--ff)", color: 'var(--ink3)', textAlign: 'center', margin: '20px 0 0' }}>
           Foundly connects finders and owners anonymously. Your info is only shared with the owner of this item.
         </p>
       </div>

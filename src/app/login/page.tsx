@@ -151,12 +151,12 @@ export default function LoginPage() {
           <div className="animate-reveal">
             <div className="flex items-center gap-2 mb-10">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              <span style={{ font: "700 18px 'Plus Jakarta Sans'" }}>Foundly</span>
+              <span style={{ font: "700 18px var(--ff)" }}>Foundly</span>
             </div>
-            <h1 style={{ font: "800 28px/1.2 'Plus Jakarta Sans'", letterSpacing: '-.025em', margin: '0 0 10px' }}>
+            <h1 style={{ font: "800 28px/1.2 var(--ff)", letterSpacing: '-.025em', margin: '0 0 10px' }}>
               Welcome back.
             </h1>
-            <p style={{ font: "400 15px/1.55 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: '0 0 28px' }}>
+            <p style={{ font: "400 15px/1.55 var(--ff)", color: 'var(--ink2)', margin: '0 0 28px' }}>
               Enter your email and we'll send a one-time code. No password to remember — ever.
             </p>
             <label className="label block mb-2">Email address</label>
@@ -168,7 +168,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && sendCode()}
-                style={{ flex: 1, border: 'none', outline: 'none', font: "400 15px 'Plus Jakarta Sans'", background: 'transparent', color: 'var(--ink)', minWidth: 0 }}
+                style={{ flex: 1, border: 'none', outline: 'none', font: "400 15px var(--ff)", background: 'transparent', color: 'var(--ink)', minWidth: 0 }}
               />
             </div>
             <button
@@ -184,7 +184,7 @@ export default function LoginPage() {
                 <span>{sendError}</span>
               </div>
             )}
-            <p style={{ font: "400 13px/1.5 'Plus Jakarta Sans'", color: 'var(--ink3)', textAlign: 'center', margin: '22px 0 0' }}>
+            <p style={{ font: "400 13px/1.5 var(--ff)", color: 'var(--ink3)', textAlign: 'center', margin: '22px 0 0' }}>
               New here? Your account is created automatically — same simple step either way.
             </p>
           </div>
@@ -202,7 +202,7 @@ export default function LoginPage() {
               </button>
               <div className="flex items-center gap-2">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <span style={{ font: "700 17px 'Plus Jakarta Sans'" }}>Foundly</span>
+                <span style={{ font: "700 17px var(--ff)" }}>Foundly</span>
               </div>
               <div style={{ width: 38 }} />
             </div>
@@ -211,8 +211,8 @@ export default function LoginPage() {
               <div style={{ width: 62, height: 62, borderRadius: 19, background: 'var(--accent-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
                 <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/><path d="m2 17 6-4"/></svg>
               </div>
-              <h2 style={{ font: "800 23px/1.2 'Plus Jakarta Sans'", letterSpacing: '-.02em', margin: '0 0 8px' }}>Check your email</h2>
-              <p style={{ font: "400 14px/1.5 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: 0 }}>
+              <h2 style={{ font: "800 23px/1.2 var(--ff)", letterSpacing: '-.02em', margin: '0 0 8px' }}>Check your email</h2>
+              <p style={{ font: "400 14px/1.5 var(--ff)", color: 'var(--ink2)', margin: 0 }}>
                 We sent an 8-digit code to<br />
                 <b style={{ color: 'var(--ink)', fontWeight: 600 }}>{email}</b>
               </p>
@@ -272,17 +272,17 @@ export default function LoginPage() {
               {resendSecs === 0 ? (
                 <button
                   onClick={() => { setOtp(''); setOtpError(null); setResendSecs(RESEND_COOLDOWN); sendCode() }}
-                  style={{ border: 'none', background: 'transparent', font: "600 14px 'Plus Jakarta Sans'", color: 'var(--accent)', cursor: 'pointer', padding: 8 }}
+                  style={{ border: 'none', background: 'transparent', font: "600 14px var(--ff)", color: 'var(--accent)', cursor: 'pointer', padding: 8 }}
                 >
                   Resend code
                 </button>
               ) : (
-                <span style={{ font: "400 13px 'Plus Jakarta Sans'", color: 'var(--ink3)' }}>
+                <span style={{ font: "400 13px var(--ff)", color: 'var(--ink3)' }}>
                   Didn't get it? Resend in <b style={{ color: 'var(--ink2)', fontWeight: 600 }}>{resendSecs}s</b>
                 </span>
               )}
             </div>
-            <p style={{ font: "400 12px 'Plus Jakarta Sans'", color: 'var(--ink3)', textAlign: 'center', margin: '10px 0 0' }}>
+            <p style={{ font: "400 12px var(--ff)", color: 'var(--ink3)', textAlign: 'center', margin: '10px 0 0' }}>
               Code expires in 10 minutes.
             </p>
           </div>
@@ -294,8 +294,8 @@ export default function LoginPage() {
             <div style={{ width: 78, height: 78, borderRadius: '50%', background: 'var(--accent-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
               <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2"><path d="M20 6 9 17l-5-5"/></svg>
             </div>
-            <h2 style={{ font: "800 26px/1.2 'Plus Jakarta Sans'", letterSpacing: '-.02em', margin: '0 0 10px' }}>Email confirmed.</h2>
-            <p style={{ font: "400 15px/1.55 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: 0 }}>
+            <h2 style={{ font: "800 26px/1.2 var(--ff)", letterSpacing: '-.02em', margin: '0 0 10px' }}>Email confirmed.</h2>
+            <p style={{ font: "400 15px/1.55 var(--ff)", color: 'var(--ink2)', margin: 0 }}>
               Just a couple of quick things and you're in…
             </p>
           </div>
@@ -310,13 +310,13 @@ export default function LoginPage() {
               <div style={{ flex: 1, height: 3, borderRadius: 2, background: 'var(--line2)' }} />
             </div>
             <span className="mono" style={{ color: 'var(--ink3)', display: 'block', marginBottom: 8 }}>STEP 1 OF 2</span>
-            <h2 style={{ font: "800 26px/1.2 'Plus Jakarta Sans'", letterSpacing: '-.02em', margin: '0 0 8px' }}>What should we call you?</h2>
-            <p style={{ font: "400 15px/1.55 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: '0 0 20px' }}>
+            <h2 style={{ font: "800 26px/1.2 var(--ff)", letterSpacing: '-.02em', margin: '0 0 8px' }}>What should we call you?</h2>
+            <p style={{ font: "400 15px/1.55 var(--ff)", color: 'var(--ink2)', margin: '0 0 20px' }}>
               This is how you'll appear when someone finds something of yours.
             </p>
             <div className="info-panel mb-5">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.6" style={{ flexShrink: 0, marginTop: 2 }}><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
-              <p style={{ font: "400 13.5px/1.5 'Plus Jakarta Sans'", color: 'var(--accent-ink)', margin: 0 }}>
+              <p style={{ font: "400 13.5px/1.5 var(--ff)", color: 'var(--accent-ink)', margin: 0 }}>
                 A finder will only ever see <b style={{ fontWeight: 700 }}>"{finderPreview ?? 'John D.'}"</b> — your first name and last initial. Your full last name is never shown to anyone.
               </p>
             </div>
@@ -338,10 +338,10 @@ export default function LoginPage() {
               <div className="animate-reveal text-center mb-4" style={{ padding: 13, borderRadius: 12, background: 'var(--surface2)', border: '1px solid var(--line)' }}>
                 <div className="label mb-1">Finders will see</div>
                 <div className="flex items-center gap-2 justify-center">
-                  <span style={{ width: 30, height: 30, borderRadius: '50%', background: 'var(--accent-soft2)', color: 'var(--accent-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', font: "700 13px 'Plus Jakarta Sans'" }}>
+                  <span style={{ width: 30, height: 30, borderRadius: '50%', background: 'var(--accent-soft2)', color: 'var(--accent-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', font: "700 13px var(--ff)" }}>
                     {firstName[0]?.toUpperCase()}
                   </span>
-                  <span style={{ font: "700 20px 'Plus Jakarta Sans'", color: 'var(--ink)' }}>{finderPreview}</span>
+                  <span style={{ font: "700 20px var(--ff)", color: 'var(--ink)' }}>{finderPreview}</span>
                 </div>
               </div>
             )}
@@ -364,15 +364,15 @@ export default function LoginPage() {
             </div>
             <div className="flex items-center justify-between mb-2">
               <span className="mono" style={{ color: 'var(--ink3)' }}>STEP 2 OF 2</span>
-              <span style={{ font: "600 11px 'Plus Jakarta Sans'", color: 'var(--ink3)', background: 'var(--surface2)', border: '1px solid var(--line)', padding: '3px 9px', borderRadius: 999 }}>Optional</span>
+              <span style={{ font: "600 11px var(--ff)", color: 'var(--ink3)', background: 'var(--surface2)', border: '1px solid var(--line)', padding: '3px 9px', borderRadius: 999 }}>Optional</span>
             </div>
-            <h2 style={{ font: "800 26px/1.2 'Plus Jakarta Sans'", letterSpacing: '-.02em', margin: '0 0 8px' }}>Add a recovery email?</h2>
-            <p style={{ font: "400 15px/1.55 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: '0 0 20px' }}>
+            <h2 style={{ font: "800 26px/1.2 var(--ff)", letterSpacing: '-.02em', margin: '0 0 8px' }}>Add a recovery email?</h2>
+            <p style={{ font: "400 15px/1.55 var(--ff)", color: 'var(--ink2)', margin: '0 0 20px' }}>
               A safety net in case you ever lose access to your main email.
             </p>
             <div style={{ display: 'flex', gap: 10, padding: 14, borderRadius: 14, background: 'rgba(58,138,100,.09)', border: '1px solid rgba(58,138,100,.2)', marginBottom: 22 }}>
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#3a8a64" strokeWidth="1.6" style={{ flexShrink: 0, marginTop: 2 }}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              <p style={{ font: "400 13.5px/1.5 'Plus Jakarta Sans'", color: '#2c6b4e', margin: 0 }}>
+              <p style={{ font: "400 13.5px/1.5 var(--ff)", color: '#2c6b4e', margin: 0 }}>
                 This is <b style={{ fontWeight: 700 }}>only for recovering your account</b> — it is never shown to finders or anyone else. Your privacy stays fully intact.
               </p>
             </div>
@@ -394,7 +394,7 @@ export default function LoginPage() {
             <button onClick={() => saveRecovery(true)} className="btn-secondary">
               Skip for now
             </button>
-            <p style={{ font: "400 12px/1.5 'Plus Jakarta Sans'", color: 'var(--ink3)', textAlign: 'center', margin: '14px 0 0' }}>
+            <p style={{ font: "400 12px/1.5 var(--ff)", color: 'var(--ink3)', textAlign: 'center', margin: '14px 0 0' }}>
               You can add or change this anytime in Settings → Security.
             </p>
           </div>
@@ -406,10 +406,10 @@ export default function LoginPage() {
             <div style={{ width: 88, height: 88, borderRadius: 28, background: 'var(--accent-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 26 }}>
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
             </div>
-            <h2 style={{ font: "800 28px/1.2 'Plus Jakarta Sans'", letterSpacing: '-.025em', margin: '0 0 12px' }}>
+            <h2 style={{ font: "800 28px/1.2 var(--ff)", letterSpacing: '-.025em', margin: '0 0 12px' }}>
               You're all set{firstName ? `, ${firstName}` : ''}.
             </h2>
-            <p style={{ font: "400 15px/1.6 'Plus Jakarta Sans'", color: 'var(--ink2)', margin: '0 0 32px', padding: '0 12px' }}>
+            <p style={{ font: "400 15px/1.6 var(--ff)", color: 'var(--ink2)', margin: '0 0 32px', padding: '0 12px' }}>
               Your account is ready and your first tag is waiting. Privacy built in, from day one.
             </p>
             <button onClick={() => router.push('/dashboard')} className="btn-primary" style={{ maxWidth: 240 }}>
