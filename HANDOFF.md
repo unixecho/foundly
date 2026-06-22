@@ -145,6 +145,29 @@ The committed batch for this session. (Raw wishlist lives in `TODO.md`.)
 - The Owner live-update + top-of-screen toast (TODO #2 / handoff item) depends on the SSE
   Vercel-timeout decision (Supabase Realtime vs. plan upgrade). Not in this batch.
 
+**Session 4 — results (what shipped)**
+- ✅ Item 1 — IL phone validation (commit 2879430). Verified live in the running finder
+  flow: US number rejected with the IL error; valid `050-123-4567` accepted + submitted.
+- ✅ Item 3 — editable profile name (commit 2879430).
+- ✅ Item 2 — i18n **phase 1 only** (fonts, commit 7945746). Phases 2–6 deferred (own track).
+- ✅ Item 4 — `/dashboard/items` polish (commit 6b3e76f): inline rename, recovery counts.
+- ◑ Item 5 — demo QA: **public finder flow fully verified** in-browser (intro → hub →
+  contact + phone validation → message/chat request → chatroom; all `/api/cases/*` = 200,
+  no console/server errors). **Owner-side flows NOT verified by me** — they're behind the
+  OTP auth wall and the preview screenshot tool was timing out. Owner-side checklist below.
+- Build cmd note: never run `npm run build` while the preview dev server is running — they
+  share `.next` and it corrupts the dev server's CSS (had to `rm -rf .next` + restart).
+
+**Owner-side QA checklist (needs login — for you to run)**
+1. Dashboard loads; nav "Cases" badge shows open/in-progress count.
+2. Items page: inline **rename** (pencil → edit → Save) persists; recovery "N×" badge shows
+   on items that have cases; "Added <date>" renders.
+3. Settings: **edit name** (first/last) saves and updates the "Finders see" line + greeting.
+4. Open the case created during QA (finder sent a message + contact): **Accept** the chat,
+   reply, confirm the finder tab updates live (SSE); change status; archive.
+5. Hebrew/Arabic: type a Hebrew item nickname on activate + an Arabic one — confirm both
+   render in the proper font (Heebo / Noto Sans Arabic), not a system fallback.
+
 ---
 
 ## Current file map (things touched in session 2)
