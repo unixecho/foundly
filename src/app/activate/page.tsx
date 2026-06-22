@@ -1,14 +1,20 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 
 type Screen = 'scan' | 'used' | 'invalid' | 'name' | 'success'
 
-const FN_PREFIX = 'FN-'
-
 export default function ActivatePage() {
+  return (
+    <Suspense fallback={null}>
+      <ActivateContent />
+    </Suspense>
+  )
+}
+
+function ActivateContent() {
   const [screen, setScreen] = useState<Screen>('scan')
   const [codeInput, setCodeInput] = useState('')
   const [verifiedCode, setVerifiedCode] = useState('')
