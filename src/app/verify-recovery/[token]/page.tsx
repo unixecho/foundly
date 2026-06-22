@@ -1,14 +1,15 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 
-export default async function VerifyRecoveryPage({ params }: { params: { token: string } }) {
+export default async function VerifyRecoveryPage({ params }: { params: Promise<{ token: string }> }) {
+  const { token } = await params
   const supabase = await createClient()
 
   // Find user with this token
   const { data: user } = await supabase
     .from('users')
     .select('id, first_name, recovery_email, recovery_email_token_exp, recovery_email_verified')
-    .eq('recovery_email_token', params.token)
+    .eq('recovery_email_token', token)
     .single()
 
   // Token not found
