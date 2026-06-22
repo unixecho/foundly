@@ -16,7 +16,7 @@ export default function LocalTime({
   style,
 }: {
   iso: string
-  mode?: 'datetime' | 'time'
+  mode?: 'datetime' | 'time' | 'date'
   className?: string
   style?: CSSProperties
 }) {
@@ -27,7 +27,9 @@ export default function LocalTime({
     setText(
       mode === 'time'
         ? d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-        : d.toLocaleString()
+        : mode === 'date'
+          ? d.toLocaleDateString([], { day: 'numeric', month: 'short', year: 'numeric' })
+          : d.toLocaleString()
     )
   }, [iso, mode])
 
